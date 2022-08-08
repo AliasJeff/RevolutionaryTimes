@@ -1,0 +1,129 @@
+@charset "utf-8";
+* {
+    moz-user-select: -moz-none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    -khtml-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+}
+
+* {
+    -webkit-tap-highlight-color: transparent;
+    border: 0;
+}
+
+*, *:before, *:after {
+    margin: 0;
+    padding: 0;
+    outline: 0;
+}
+
+body {
+    font-family: "microsoft yahei", Verdana, Arial, 微软雅黑;
+}
+
+ul, ol, li {
+    list-style: none;
+}
+
+img, span, a, dt {
+    display: inline-block;
+}
+
+a {
+    text-decoration: none;
+    color: #333;
+}
+
+h1, h2, h3 {
+    font-size: 16px;
+}
+
+.indent-40 {
+    text-indent: 40px;
+}
+
+.indent-60 {
+    text-indent: 60px;
+}
+
+.l {
+    float: left;
+}
+
+.r {
+    float: right;
+}
+
+.clearfix {
+    zoom: 1;
+}
+
+.clearfix:before, .clearfix:after {
+    content: "";
+    display: block;
+    clear: both;
+}
+
+.container-fluid {
+    width: 100%;
+    text-align: center;
+}
+
+body {
+    color: #333;
+    background: #eee;
+    background-size: 100%;
+}
+
+
+@keyframes Light {
+    0%, 50%, 100% {
+        transform: scale(1);
+    }
+    25% {
+        transform: scale(10);
+    }
+    75% {
+        transform: scale(15);
+    }
+}
+
+@keyframes twinkle {
+    0% {
+        transform: rotate(0deg) scale(1);
+    }
+    25% {
+        transform: rotate(90deg) scale(0.5);
+    }
+    50% {
+        transform: rotate(180deg) scale(0);
+    }
+    100% {
+        transform: rotate(0deg) scale(0);
+    }
+}
+
+/*修饰*/
+.embellish .rocket {
+    display: none;
+    position: fixed;
+    bottom: 40px;
+    right: 10px;
+    width: 71px;
+    height: 135px;
+    transition: all 0.6s;
+    background: url(../image/e1.png);
+}
+
+.embellish .rocket:hover {
+    transition: all 0.6s;
+    background: url(../image/e2.png);
+}
+
+/*底部*/
+footer {
+
+}
