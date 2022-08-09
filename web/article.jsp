@@ -14,7 +14,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>title</title>
-    <link rel="stylesheet" href="./css/index.css">
+    <link rel="stylesheet" href="./css/nav.css">
     <link rel="stylesheet" href="./css/all.css">
     <style>
         body .shell-main-nav ul .nav-box {
@@ -287,14 +287,14 @@
         <div class="shell-main-nav">
             <div class="logo">
                 <img src="./image/image/logo.jpg" alt="">
-                <span>山羊の前端小窝</span>
+                <span>旌旗在望</span>
             </div>
             <ul>
-                <li><a href="./index.html">xxxx</a></li>
-                <li><a href="./Template.html">xxxx</a></li>
+                <li><a href="./index.jsp">首页</a></li>
+                <li><a href="./userInfo.jsp">个人中心</a></li>
                 <li><a href="./make.html">xxxx</a></li>
-                <li><a href="./painter.html">xxxx</a></li>
-                <li><a href="./Login.html">登录/注册</a></li>
+                <li><a href="./postArticle.jsp">发布文章</a></li>
+                <li><a href="./login.jsp">登录/注册</a></li>
                 <div class="nav-box"></div>
             </ul>
         </div>
@@ -481,6 +481,19 @@
     </div>
 
 </div>
+<script>
+    var login = document.getElementById("login");
+    var username = "<%=session.getAttribute("username")%>";
+
+    if(username === "null") {
+        login.innerHTML = "登录/注册";
+    } else {
+        login.innerHTML = "当前用户：" + username;
+        login.href = "#";
+    }
+
+
+</script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
 <script>
     window.addEventListener('scroll', function () {

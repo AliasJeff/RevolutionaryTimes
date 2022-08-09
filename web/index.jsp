@@ -32,16 +32,16 @@
 
     <div class="shell-main">
         <%--顶部导航栏--%>
-        <div class="shell-main-nav">
+        <div class="shell-main-nav" style="margin-bottom: 120px">
             <div class="logo">
                 <img src="./image/image/logo.jpg" alt="">
                 <span>旌旗在望</span>
             </div>
             <ul>
-                <li><a href="./index.html">xxxx</a></li>
-                <li><a href="./Template.html">xxxx</a></li>
+                <li><a href="./index.jsp">首页</a></li>
+                <li><a href="./userInfo.jsp">个人中心</a></li>
                 <li><a href="./make.html">xxxx</a></li>
-                <li><a href="./painter.html">xxxx</a></li>
+                <li><a href="./postArticle.jsp">发布文章</a></li>
                 <li><a id="login" href="./login.jsp"></a></li>
                 <div class="nav-box"></div>
             </ul>
@@ -189,6 +189,9 @@
                 </div>
             </article>
         </section>
+        <div class="shell-main-footer">
+            <span>我是底部栏</span>
+        </div>
     </div>
 
 
@@ -199,7 +202,7 @@
     var login = document.getElementById("login");
     var username = "<%=session.getAttribute("username")%>";
 
-    if(username === "null") {
+    if (username === "null") {
         login.innerHTML = "登录/注册";
     } else {
         login.innerHTML = "当前用户：" + username;
@@ -208,6 +211,7 @@
 
 
 </script>
+
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
 <script>
     window.addEventListener('scroll', function () {
