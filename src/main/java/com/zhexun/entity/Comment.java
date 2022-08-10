@@ -4,7 +4,7 @@ import java.util.Date;
 
 public class Comment {
     private int commentid;
-    private int courseid;
+    private int articleid;
     private int uid;
     private int uoid;
     private String commentContent;
@@ -13,9 +13,9 @@ public class Comment {
     public Comment() {
     }
 
-    public Comment(int commentid, int courseid, int uid, int uoid, String commentContent, Date date) {
+    public Comment(int commentid, int articleid, int uid, int uoid, String commentContent, Date date) {
         this.commentid = commentid;
-        this.courseid = courseid;
+        this.articleid = articleid;
         this.uid = uid;
         this.uoid = uoid;
         this.commentContent = commentContent;
@@ -30,12 +30,12 @@ public class Comment {
         this.commentid = commentid;
     }
 
-    public int getCourseid() {
-        return courseid;
+    public int getArticleid() {
+        return articleid;
     }
 
-    public void setCourseid(int courseid) {
-        this.courseid = courseid;
+    public void setArticleid(int articleid) {
+        this.articleid = articleid;
     }
 
     public int getUid() {

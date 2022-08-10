@@ -57,4 +57,12 @@ public class UserServiceImpl implements UserService {
             return password.equals(passwordConfirm);
         }
     }
+
+    @Override
+    public int getUidByCondition(User user) {
+        Connection conn = JDBCUtil.getConnection();
+        User result = userDao.selectUserByCondition(conn, user);
+        JDBCUtil.release(conn);
+        return result.getUid();
+    }
 }

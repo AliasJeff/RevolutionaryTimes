@@ -12,4 +12,6 @@ public interface UserService {
     boolean isValidAccount(String account) throws SQLException;
 
     boolean isValidPassword(String password, String passwordConfirm);
+
+    int getUidByCondition(User user);
 }

@@ -8,12 +8,13 @@ public class User {
     private String avatar;
     private String email;
     private String birthday;
+    private int collectArticleid;
     private int access;
 
     public User() {
     }
 
-    public User(int uid, String uname, String upassword, String uintroduce, String avatar, String email, String birthday, int access) {
+    public User(int uid, String uname, String upassword, String uintroduce, String avatar, String email, String birthday, int collectArticleid, int access) {
         this.uid = uid;
         this.uname = uname;
         this.upassword = upassword;
@@ -21,6 +22,7 @@ public class User {
         this.avatar = avatar;
         this.email = email;
         this.birthday = birthday;
+        this.collectArticleid = collectArticleid;
         this.access = access;
     }
 
@@ -78,6 +80,14 @@ public class User {
 
     public void setBirthday(String birthday) {
         this.birthday = birthday;
+    }
+
+    public int getCollectArticleid() {
+        return collectArticleid;
+    }
+
+    public void setCollectArticleid(int collectArticleid) {
+        this.collectArticleid = collectArticleid;
     }
 
     public int getAccess() {

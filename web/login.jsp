@@ -25,7 +25,7 @@
             <!-- 登录 -->
             <div class="signin">
                 <h1>登录</h1>
-                <form class="more-padding" autocomplete="off" action="${pageContext.request.contextPath}/login" method="post">
+                <form class="more-padding" autocomplete="off" action="/login" method="post">
                     <input type="text" placeholder="用户名" name="account">
                     <input type="password" placeholder="密码" name="password">
                     <div class="checkbox">

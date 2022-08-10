@@ -19,7 +19,6 @@ public class RegisterSerlvet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("test/html;charset=utf-8");
-        User user = new User();
         String account = req.getParameter("account");
         String password = req.getParameter("password");
         String passwordConfirm = req.getParameter("passwordConfirm");
@@ -47,8 +46,8 @@ public class RegisterSerlvet extends HttpServlet {
 
             resp.sendRedirect("login.jsp");
         }
-//        else {    // 注册失败
-//            resp.sendRedirect("login.jsp");
-//        }
+        else {    // 注册失败
+            resp.sendError(401, "注册失败");
+        }
     }
 }

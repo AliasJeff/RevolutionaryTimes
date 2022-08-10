@@ -17,13 +17,13 @@
         background: rgba(255, 255, 255, 0.7);
         margin: 0 auto 35px;
         padding: 15px;
-        width: 1050px;
+        width: 800px;
         overflow: hidden;
         border-radius: 15px;
     }
     .form-title {
         margin: 30px;
-        width: 990px;
+        width: 740px;
         font-size: 30px;
         font-weight: bold;
         font-family: 微软雅黑;
@@ -33,8 +33,8 @@
     .form-content {
         font-size: 20px;
         margin: 30px;
-        width: 990px;
-        height: 850px;
+        width: 740px;
+        height: 750px;
         border-style: hidden;
         background: none;
     }
@@ -55,7 +55,7 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        right: 10%;
+        right: 20%;
     }
     .control ul li {
         height: 35px;
@@ -109,20 +109,19 @@
                 <div class="nav-box"></div>
             </ul>
         </div>
-
         <section>
             <div class="form">
-                <input type="text" class="form-title" placeholder="请输入文章标题（5~100个字）" required>
+                <input type="text" class="form-title" name="art-title" placeholder="请输入文章标题（5~100个字）" required>
             </div>
             <hr/>
             <div class="form">
-                <textarea class="form-content" rows="10" cols="10" required></textarea>
+                <textarea class="form-content" name="art-content" rows="10" cols="10" required></textarea>
             </div>
         </section>
         <div class="control">
             <ul>
-                <li><a href="#">保存草稿</a></li>
-                <li><a href="#">发布文章</a></li>
+                <li><a >保存草稿</a></li>
+                <li><a id="postButton" onclick="postArticle()">发布文章</a></li>
                 <div class="navbox"></div>
             </ul>
         </div>
@@ -141,6 +140,31 @@
         login.href = "./userInfo.jsp";
     }
 
+    function postArticle() {
+        var title = document.getElementById("art-title");
+        var content = document.getElementById("art-content")
+        if(username === "null") {
+            alert("请先登录！");
+        } else {
+            // $.ajax({
+            //     url: "/postArticle",
+            //     type: "POST",
+            //     dataType: "json",
+            //     data: {
+            //         "username": username,
+            //         "art-title": title,
+            //         "art-content": content,
+            //     },
+            //     success: function (){
+            //         alert("发布成功！");
+            //     },
+            //     error:function (){
+            //         alert("似乎遇到了一点问题");
+            //     }
+            // });
+            location.href = Servlet+'?name='+'postArticle';
+        }
+    }
 
 </script>
 </html>
