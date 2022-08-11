@@ -20,15 +20,12 @@ public class ReloadArticleServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("test/html;charset=utf-8");
+
         List<Article> article;
-        List<String> title = new ArrayList<>();
         ArticleService articleService = new ArticleServiceImpl();
         article = articleService.selectAllArticle();
-        for(Article art : article) {
-            title.add(new String(art.getTitle()));
-        }
-        System.out.println(title);
-        req.setAttribute("title", title);
+
+        req.setAttribute("article", article);
         req.getRequestDispatcher( "/index.jsp").forward(req,resp);
     }
 }

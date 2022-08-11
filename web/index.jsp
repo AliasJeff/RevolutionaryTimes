@@ -23,9 +23,9 @@
     <link rel="stylesheet" href="./css/common.css">
     <script src="./js/swiper.js"></script>
 </head>
-<body>
+<body onload="reloadArticle()">
 <%--TODO: 添加搜索栏--%>
-<form name="formIndex" autocomplete="off" action="" method="post">
+<form id="formIndex" autocomplete="off" action="" method="post">
     <div class="shell">
         <div class="shell-top">
             <div class="word">
@@ -116,6 +116,7 @@
                         <div class="art Link mt20 clearfix">
                             <h2 class="art-txt"><span>个人信息</span></h2>
                             <ul class="art-list">
+                                <a class="introduction">这个人很懒，没有填写简介~</a>
                                 <li><a href="#"><span>个人中心</span></a></li>
                                 <li><a href="#"><span>我的收藏</span></a></li>
                                 <li><a href="#"><span>我的发布</span></a></li>
@@ -126,77 +127,77 @@
 
                         </div>
                     </aside>
-                    <div class="art-right r">
-                        <h2 class="art-txt"><span>最新文章</span></h2>
-                        <div class="art-model">
-                            <h3><a href="#">文章1</a></h3>
-                            <p class="dateview"><span>发布时间：2016/10/18</span> <span>作者：lmlblog.com</span></p>
-                            <dl class="img-txt">
-                                <dt>
-                                    <img src="img/7.jpg" alt="文章1" title="文章1">
-                                </dt>
-                                <dd>
-                                    <p class="detail">　　
-                                        内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容</p>
-                                    <a href="article.html" class="btn  c-fff">查看全文</a>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div class="art-model">
-                            <h3><a href="#">文章2</a></h3>
-                            <p class="dateview"><span>发布时间：2016/10/09</span> <span>作者：lmlblog.com</span></p>
-                            <dl class="img-txt">
-                                <dt>
-                                    <img src="img/8.jpg" alt="文章2" title="文章2">
-                                </dt>
-                                <dd>
-                                    <p class="detail">
-                                        　　内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、</p>
-                                    <a href="#" class="btn  c-fff">查看全文</a>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div class="art-model">
-                            <h3><a href="#">文章3</a></h3>
-                            <p class="dateview"><span>发布时间：2016/10/19</span> <span>作者：lmlblog.com</span></p>
-                            <dl class="img-txt">
-                                <dt>
-                                    <img src="img/9.jpg" alt="文章3" title="文章3">
-                                </dt>
-                                <dd>
-                                    <p class="detail">　　
-                                        内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、</p>
-                                    <a href="#" class="btn  c-fff">查看全文</a>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div class="art-model">
-                            <h3><a href="#">文章4</a></h3>
-                            <p class="dateview"><span>发布时间：2016/10/08</span> <span>作者：lmlblog.com</span></p>
-                            <dl class="img-txt">
-                                <dt>
-                                    <img src="img/6.jpg" alt="文章4" title="文章4">
-                                </dt>
-                                <dd>
-                                    <p class="detail">　　
-                                        内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、</p>
-                                    <a href="#" class="btn  c-fff">查看全文</a>
-                                </dd>
-                            </dl>
-                        </div>
-                        <div class="art-model">
-                            <h3><a href="#">文章5</a></h3>
-                            <p class="dateview"><span>发布时间：2016/10/30</span> <span>作者：lmlblog.com</span></p>
-                            <dl class="img-txt">
-                                <dt><img src="img/10.jpg" alt="文章5" title="文章5">
-                                </dt>
-                                <dd>
-                                    <p class="detail">
-                                        　　内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、</p>
-                                    <a href="#" class="btn  c-fff">查看全文</a>
-                                </dd>
-                            </dl>
-                        </div>
+                    <div class="art-right r" id="art-right r">
+<%--                        <h2 class="art-txt"><span>最新文章</span></h2>--%>
+<%--                        <div class="art-model">--%>
+<%--                            <h3><a href="#">文章1</a></h3>--%>
+<%--                            <p class="dateview"><span>发布时间：2016/10/18</span> <span>作者：lmlblog.com</span></p>--%>
+<%--                            <dl class="img-txt">--%>
+<%--                                <dt>--%>
+<%--                                    <img src="img/7.jpg" alt="文章1" title="文章1">--%>
+<%--                                </dt>--%>
+<%--                                <dd>--%>
+<%--                                    <p class="detail">　　--%>
+<%--                                        内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容</p>--%>
+<%--                                    <a href="article.html" class="btn  c-fff">查看全文</a>--%>
+<%--                                </dd>--%>
+<%--                            </dl>--%>
+<%--                        </div>--%>
+<%--                        <div class="art-model">--%>
+<%--                            <h3><a href="#">文章2</a></h3>--%>
+<%--                            <p class="dateview"><span>发布时间：2016/10/09</span> <span>作者：lmlblog.com</span></p>--%>
+<%--                            <dl class="img-txt">--%>
+<%--                                <dt>--%>
+<%--                                    <img src="img/8.jpg" alt="文章2" title="文章2">--%>
+<%--                                </dt>--%>
+<%--                                <dd>--%>
+<%--                                    <p class="detail">--%>
+<%--                                        　　内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、</p>--%>
+<%--                                    <a href="#" class="btn  c-fff">查看全文</a>--%>
+<%--                                </dd>--%>
+<%--                            </dl>--%>
+<%--                        </div>--%>
+<%--                        <div class="art-model">--%>
+<%--                            <h3><a href="#">文章3</a></h3>--%>
+<%--                            <p class="dateview"><span>发布时间：2016/10/19</span> <span>作者：lmlblog.com</span></p>--%>
+<%--                            <dl class="img-txt">--%>
+<%--                                <dt>--%>
+<%--                                    <img src="img/9.jpg" alt="文章3" title="文章3">--%>
+<%--                                </dt>--%>
+<%--                                <dd>--%>
+<%--                                    <p class="detail">　　--%>
+<%--                                        内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、</p>--%>
+<%--                                    <a href="#" class="btn  c-fff">查看全文</a>--%>
+<%--                                </dd>--%>
+<%--                            </dl>--%>
+<%--                        </div>--%>
+<%--                        <div class="art-model">--%>
+<%--                            <h3><a href="#">文章4</a></h3>--%>
+<%--                            <p class="dateview"><span>发布时间：2016/10/08</span> <span>作者：lmlblog.com</span></p>--%>
+<%--                            <dl class="img-txt">--%>
+<%--                                <dt>--%>
+<%--                                    <img src="img/6.jpg" alt="文章4" title="文章4">--%>
+<%--                                </dt>--%>
+<%--                                <dd>--%>
+<%--                                    <p class="detail">　　--%>
+<%--                                        内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、</p>--%>
+<%--                                    <a href="#" class="btn  c-fff">查看全文</a>--%>
+<%--                                </dd>--%>
+<%--                            </dl>--%>
+<%--                        </div>--%>
+<%--                        <div class="art-model">--%>
+<%--                            <h3><a href="#">文章5</a></h3>--%>
+<%--                            <p class="dateview"><span>发布时间：2016/10/30</span> <span>作者：lmlblog.com</span></p>--%>
+<%--                            <dl class="img-txt">--%>
+<%--                                <dt><img src="img/10.jpg" alt="文章5" title="文章5">--%>
+<%--                                </dt>--%>
+<%--                                <dd>--%>
+<%--                                    <p class="detail">--%>
+<%--                                        　　内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、内容、</p>--%>
+<%--                                    <a href="#" class="btn  c-fff">查看全文</a>--%>
+<%--                                </dd>--%>
+<%--                            </dl>--%>
+<%--                        </div>--%>
                     </div>
                 </article>
             </section>
@@ -209,45 +210,6 @@
     </div>
 </form>
 </body>
-<script>
-    var login = document.getElementById("login");
-    var username = "<%=session.getAttribute("username")%>";
-    var articleTitle = [];
-    var articleContent = [];
-    var articleDate;
-    var articleView;
-    var articleLike;
-    var articleCollect;
-
-    if (username === "null") {
-        login.innerHTML = "登录/注册";
-    } else {
-        login.innerHTML = "当前用户：" + username;
-        login.href = "#";
-    }
-
-    function reloadArticle() {
-        document.formIndex.action = "<%=request.getContextPath()%>/reloadArticle";
-        document.formIndex.submit();
-<%--        <%--%>
-<%--        List<String> titleList = (List<String>) request.getAttribute("title");--%>
-<%--        for(int i = 0; i < titleList.size(); i++) { %>--%>
-<%--            articleTitle[<%=i%>] = <%=((String) titleList.get(i))%>;--%>
-<%--        <%}%>--%>
-        var info ='';
-        info = info + '<li><a href="#"><span>' + articleTitle[1] + '</span></a></li>' +
-                      '<li><a href="#"><span>' + articleTitle[2] + '</span></a></li>' +
-                      '<li><a href="#"><span>' + articleTitle[3] + '</span></a></li>' +
-                      '<li><a href="#"><span>' + articleTitle[4] + '</span></a></li>' +
-                      '<li><a href="#"><span>' + articleTitle[5] + '</span></a></li>' +
-                      '<li><a href="#"><span>' + articleTitle[6] + '</span></a></li>' +
-                      '<li><a href="#"><span>' + articleTitle[7] + '</span></a></li>'
-        document.getElementById("art-list").innerHTML = info;
-    }
-
-
-</script>
-
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
 <script>
     window.addEventListener('scroll', function () {
@@ -261,6 +223,102 @@
             $('.shell-main').css('top', '100vh')
         }
     })
+
+</script>
+<script>
+    var login = document.getElementById("login");
+    var username = "<%=session.getAttribute("username")%>";
+    var title;
+    var articleTitle = [];
+    var articleContent = [];
+    var articleDate = [];
+    var articleView = [];
+    var articleLike = [];
+    var articleCollect = [];
+
+    if (username === "null") {
+        login.innerHTML = "登录/注册";
+    } else {
+        login.innerHTML = "当前用户：" + username;
+        login.href = "#";
+    }
+
+    function reloadArticle() {
+        alert("entered");
+        alert("before: " + document.getElementById("formIndex").action);
+        document.getElementById("formIndex").action = "/reloadArticle";
+        alert("after: " + document.getElementById("formIndex").action);
+        document.getElementById("formIndex").submit();
+
+        <%
+        List<Article> articles = (List<Article>) request.getAttribute("article");
+//       List<Article> articles = new ArrayList<>();
+        for(int i = 0; i < articles.size(); i++) {%>
+        articleTitle[<%=i%>] = <%=((String) articles.get(i).getTitle())%>;
+        articleContent[<%=i%>] = <%=((String) articles.get(i).getContent())%>;
+        articleDate[<%=i%>] = <%=((Date) articles.get(i).getDate())%>;
+        articleView[<%=i%>] = <%=((int) articles.get(i).getView())%>;
+        articleLike[<%=i%>] = <%=((int) articles.get(i).getLike())%>;
+        articleCollect[<%=i%>] = <%=((int) articles.get(i).getCollect())%>;
+        <%}%>
+        var info ='';
+        info = '<li><a href="#"><span>' + articleTitle[0] + '</span></a></li>' +
+               '<li><a href="#"><span>' + articleTitle[1] + '</span></a></li>' +
+               '<li><a href="#"><span>' + articleTitle[2] + '</span></a></li>' +
+               '<li><a href="#"><span>' + articleTitle[3] + '</span></a></li>' +
+               '<li><a href="#"><span>' + articleTitle[4] + '</span></a></li>' +
+               '<li><a href="#"><span>' + articleTitle[5] + '</span></a></li>' +
+               '<li><a href="#"><span>' + articleTitle[6] + '</span></a></li>';
+        document.getElementById("art-list").innerHTML = info;
+
+        info = '<h2 class="art-txt"><span>最新文章</span></h2>' +
+               '<div class="art-model">' +
+               '<h3><a href="#">' + articleTitle[0] + '</a></h3>' +
+               '<p class="dateview"><span>' + '发布时间：' + articleDate[0] + '</span> <span>' + '作者：' + 'lmlblog.com' + '</span></p>' +
+               '<dl class="img-txt">' +
+               '<dt>' +
+               '<img src="img/7.jpg" alt="文章1" title="文章1">' +
+               '</dt>' +
+               '<dd>' +
+               '<p class="detail">' + articleContent[0] + '</p>' +
+               '<a href="article.html" class="btn  c-fff">查看全文</a>' +
+               '</dd>' +
+               '</dl>' +
+               '</div>' +
+
+               '<div class="art-model">' +
+               '<h3><a href="#">' + articleTitle[1] + '</a></h3>' +
+               '<p class="dateview"><span>' + '发布时间：' + articleDate[1] + '</span> <span>' + '作者：' + 'lmlblog.com' + '</span></p>' +
+               '<dl class="img-txt">' +
+               '<dt>' +
+               '<img src="img/7.jpg" alt="文章1" title="文章1">' +
+               '</dt>' +
+               '<dd>' +
+               '<p class="detail">' + articleContent[1] + '</p>' +
+               '<a href="article.html" class="btn  c-fff">查看全文</a>' +
+               '</dd>' +
+               '</dl>' +
+               '</div>' +
+
+               '<div class="art-model">' +
+               '<h3><a href="#">' + articleTitle[2] + '</a></h3>' +
+               '<p class="dateview"><span>' + '发布时间：' + articleDate[2] + '</span> <span>' + '作者：' + 'lmlblog.com' + '</span></p>' +
+               '<dl class="img-txt">' +
+               '<dt>' +
+               '<img src="img/7.jpg" alt="文章1" title="文章1">' +
+               '</dt>' +
+               '<dd>' +
+               '<p class="detail">' + articleContent[2] + '</p>' +
+               '<a href="article.html" class="btn  c-fff">查看全文</a>' +
+               '</dd>' +
+               '</dl>' +
+               '</div>';
+
+        document.getElementById("art-right r").innerHTML = info;
+
+    }
+
+
 
 </script>
 
