@@ -38,6 +38,12 @@ public class UserServiceImpl implements UserService {
         return result;
     }
 
+    /**
+     * 检查用户名是否有效
+     * @param account
+     * @return
+     * @throws SQLException
+     */
     @Override
     public boolean isValidAccount(String account) throws SQLException {
         User user = new User();
@@ -49,6 +55,12 @@ public class UserServiceImpl implements UserService {
         else return result == null;
     }
 
+    /**
+     * 检查密码是否有效
+     * @param password
+     * @param passwordConfirm
+     * @return
+     */
     @Override
     public boolean isValidPassword(String password, String passwordConfirm) {
         if (password == null || password.equals("") || passwordConfirm == null || passwordConfirm.equals("")) {

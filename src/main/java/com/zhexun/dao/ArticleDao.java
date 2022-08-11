@@ -4,7 +4,9 @@ import com.zhexun.entity.Article;
 
 import java.sql.Connection;
 import java.util.Date;
+import java.util.List;
 
 public interface ArticleDao {
     boolean postArticle(Connection conn, Article article);
+    List<Article> selectAllArticle(Connection conn);
 }

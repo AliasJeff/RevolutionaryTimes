@@ -26,6 +26,17 @@ public class Article {
         this.date = date;
     }
 
+    public Article(Article art) {
+        this.articleid = art.getArticleid();
+        this.uid = art.getUid();
+        this.view = art.getView();
+        this.like = art.getLike();
+        this.collect = art.getCollect();
+        this.title = art.getTitle();
+        this.content = art.getContent();
+        this.date = art.getDate();
+    }
+
     public int getArticleid() {
         return articleid;
     }

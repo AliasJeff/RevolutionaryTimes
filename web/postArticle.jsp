@@ -21,6 +21,7 @@
         overflow: hidden;
         border-radius: 15px;
     }
+
     .form-title {
         margin: 30px;
         width: 740px;
@@ -30,6 +31,7 @@
         border-style: hidden;
         background: none;
     }
+
     .form-content {
         font-size: 20px;
         margin: 30px;
@@ -38,7 +40,9 @@
         border-style: hidden;
         background: none;
     }
+
     .control {
+        left: 0;
         width: 100%;
         position: fixed;
         z-index: 1000;
@@ -48,6 +52,7 @@
         transform: translateY(100px);
         background-color: rgba(255, 255, 255, 0.7);
     }
+
     .control ul {
         width: 600px;
         height: 100%;
@@ -57,19 +62,25 @@
         align-items: center;
         right: 20%;
     }
+
     .control ul li {
         height: 35px;
         width: 90px;
         text-align: center;
     }
-    .control ul li a {
+
+    .control ul li button {
         color: #000;
         display: block;
         width: 100%;
         height: 100%;
         line-height: 35px;
         text-align: center;
+        font-size: 18px;
+        border: none;
+        background: none;
     }
+
     .control ul .navbox {
         position: absolute;
         bottom: 1px;
@@ -81,11 +92,13 @@
         z-index: -999;
         transition: .5s;
     }
-    .control ul li:nth-child(1):hover~.navbox {
+
+    .control ul li:nth-child(1):hover ~ .navbox {
         left: 120px;
         background-color: red;
     }
-    .control ul li:nth-child(2):hover~.navbox {
+
+    .control ul li:nth-child(2):hover ~ .navbox {
         left: 360px;
         background-color: red;
     }
@@ -109,22 +122,32 @@
                 <div class="nav-box"></div>
             </ul>
         </div>
-        <section>
-            <div class="form">
-                <input type="text" class="form-title" name="art-title" placeholder="请输入文章标题（5~100个字）" required>
+        <%--TODO: 支持markdown--%>
+        <form id="form1" action="" method="post">
+            <section>
+                <div class="form">
+                    <input type="text" class="form-title" id="art-title" name="art-title" placeholder="请输入文章标题（5~100个字）" required>
+                </div>
+                <hr/>
+                <div class="form">
+                    <textarea class="form-content" id="art-content" name="art-content" rows="10" cols="10" required></textarea>
+                </div>
+            </section>
+            <div class="control">
+                <ul>
+                    <li>
+                        <%--TODO: 保存草稿功能--%>
+                        <button id="saveDraft">保存草稿</button>
+                    </li>
+                    <li>
+                        <%--TODO: 下面的js无法调用，上传时间功能、添加封面、添加标签--%>
+                        <button id="postButton" onclick="postArticle()">发布文章</button>
+<%--                        <button id="postButton" onclick="this.form.action='/postArticle'; this.form.submit();">发布文章</button>--%>
+                    </li>
+                    <div class="navbox"></div>
+                </ul>
             </div>
-            <hr/>
-            <div class="form">
-                <textarea class="form-content" name="art-content" rows="10" cols="10" required></textarea>
-            </div>
-        </section>
-        <div class="control">
-            <ul>
-                <li><a >保存草稿</a></li>
-                <li><a id="postButton" onclick="postArticle()">发布文章</a></li>
-                <div class="navbox"></div>
-            </ul>
-        </div>
+        </form>
     </div>
 </div>
 
@@ -132,8 +155,9 @@
 <script>
     var login = document.getElementById("login");
     var username = "<%=session.getAttribute("username")%>";
+    var form = document.getElementById("form1")
 
-    if(username === "null") {
+    if (username === "null") {
         login.innerHTML = "登录/注册";
     } else {
         login.innerHTML = "当前用户：" + username;
@@ -141,28 +165,16 @@
     }
 
     function postArticle() {
-        var title = document.getElementById("art-title");
-        var content = document.getElementById("art-content")
         if(username === "null") {
             alert("请先登录！");
         } else {
-            // $.ajax({
-            //     url: "/postArticle",
-            //     type: "POST",
-            //     dataType: "json",
-            //     data: {
-            //         "username": username,
-            //         "art-title": title,
-            //         "art-content": content,
-            //     },
-            //     success: function (){
-            //         alert("发布成功！");
-            //     },
-            //     error:function (){
-            //         alert("似乎遇到了一点问题");
-            //     }
-            // });
-            location.href = Servlet+'?name='+'postArticle';
+            if(document.getElementById("art-title").value != null && document.getElementById("art-content").value != null){
+                form.action="/postArticle";
+                form.submit();
+                alert("发布成功！");
+            } else {
+                alert("请填写标题或正文！");
+            }
         }
     }
 

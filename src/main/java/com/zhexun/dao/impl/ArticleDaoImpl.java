@@ -4,15 +4,17 @@ import com.zhexun.dao.ArticleDao;
 import com.zhexun.entity.Article;
 
 import java.sql.Connection;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 public class ArticleDaoImpl implements ArticleDao {
     @Override
     public boolean postArticle(Connection conn, Article article) {
         String sql = "INSERT INTO article(uid, title, content) VALUES(" + article.getUid() + ", '" + article.getTitle() + "', '" + article.getContent() + "')";
-        System.out.println(sql);
         Statement st = null;
         int i = 0;
         try {
@@ -28,5 +30,49 @@ public class ArticleDaoImpl implements ArticleDao {
             }
         }
         return i != 0;
+    }
+
+    /*TODO: 遍历整个数据库*/
+    @Override
+    public List<Article> selectAllArticle(Connection conn) {
+        int id = 100;
+        int count = 100;
+        List<Article> articles = new ArrayList<>();
+        Article art = new Article();
+        Statement statement = null;
+        ResultSet rs = null;
+        try {
+            while(count > 0 && id > 0) {
+                String sql = "SELECT * FROM article WHERE articleid=" + id;
+                statement = conn.createStatement();
+                rs = statement.executeQuery(sql);
+                if(rs.next()) {
+                    art.setUid(rs.getInt("uid"));
+                    art.setTitle(rs.getString("title"));
+                    art.setContent(rs.getString("content"));
+                    art.setDate(rs.getDate("date"));
+                    art.setView(rs.getInt("view"));
+                    art.setLike(rs.getInt("like"));
+                    art.setCollect(rs.getInt("collect"));
+                    articles.add(new Article(art));
+                    count--;
+                }
+                id--;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return articles;
     }
 }

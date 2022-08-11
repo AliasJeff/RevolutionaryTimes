@@ -8,6 +8,7 @@ import com.zhexun.util.JDBCUtil;
 
 import java.sql.Connection;
 import java.util.Date;
+import java.util.List;
 
 public class ArticleServiceImpl implements ArticleService {
     ArticleDao articleDao = new ArticleDaoImpl();
@@ -22,5 +23,14 @@ public class ArticleServiceImpl implements ArticleService {
         result = articleDao.postArticle(conn, article);
         JDBCUtil.release(conn);
         return result;
+    }
+
+    @Override
+    public List<Article> selectAllArticle() {
+        List<Article> article;
+        Connection conn = JDBCUtil.getConnection();
+        article = articleDao.selectAllArticle(conn);
+        JDBCUtil.release(conn);
+        return article;
     }
 }

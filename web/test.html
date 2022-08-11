@@ -2,26 +2,36 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>首页</title>
+    <title>上传</title>
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/nav.css">
 </head>
+<style>
+
+</style>
 <body>
-<div class="container">
-    <form role="form" method="post">
-        <h2>发表</h2>
-        <hr/>
-        <div class="form-group">
-            <label for="title" class="control-label">标题:</label>
-            <input type="text" class="form-control" name="title" placeholder="请输入标题名称" required>
-        </div>
-        <div class="form-group">
-            <label for="name" class="control-label">正文:</label>
-            <textarea class="form-control" name="post" rows="10" cols="10" required></textarea>
-        </div>
-        <div class="form-group">
-            <button type="submit" class="btn btn-primary">发表</button>
-        </div>
-    </form>
-</div>
+
+<script>
+    function menuFix() {
+        var sfEls = document.getElementById("fm").getElementsByTagName("li");
+        for (var i=0; i<sfEls.length; i++) {
+            sfEls[i].onmouseover=function() {
+                this.className+=(this.className.length>0? " ": "") + "sfhover";
+            }
+            sfEls[i].onMouseDown=function() {
+                this.className+=(this.className.length>0? " ": "") + "sfhover";
+            }
+            sfEls[i].onMouseUp=function() {
+                this.className+=(this.className.length>0? " ": "") + "sfhover";
+            }
+            sfEls[i].onmouseout=function() {
+                this.className=this.className.replace(new RegExp("( ?|^)sfhover\\b"),
+                    "");
+            }
+        }
+    }
+    window.onload=menuFix;
+</script>
 </body>
 </html>
 
