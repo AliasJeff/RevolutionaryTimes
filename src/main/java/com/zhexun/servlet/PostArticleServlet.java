@@ -21,7 +21,6 @@ public class PostArticleServlet extends HttpServlet {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("test/html;charset=utf-8");
-        System.out.println("entered servlet");
         /*根据session中的用户名找到发布者的uid*/
         HttpSession session = req.getSession();
         User user = new User();
@@ -29,15 +28,14 @@ public class PostArticleServlet extends HttpServlet {
 //        user.setUname(req.getParameter("username"));
         UserService userService = new UserServiceImpl();
         int uid = userService.getUidByCondition(user);
-
+        String uname = (String) session.getAttribute("username");
         String title = req.getParameter("art-title");
         String content = req.getParameter("art-content");
-        System.out.println("title: " + title);
-        System.out.println("content: " + content);
+        String date = req.getParameter("date");
 
         ArticleService articleService = new ArticleServiceImpl();
         boolean result = false;
-        result = articleService.postArticle(uid, title, content);
+        result = articleService.postArticle(uid, uname, title, content, date);
         if(result) {
             resp.sendRedirect("index.jsp");
         } else {

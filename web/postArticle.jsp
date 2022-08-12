@@ -133,6 +133,7 @@
                     <textarea class="form-content" id="art-content" name="art-content" rows="10" cols="10" required></textarea>
                 </div>
             </section>
+            <input type="hidden" id="date" name="date">
             <div class="control">
                 <ul>
                     <li>
@@ -156,6 +157,14 @@
     var login = document.getElementById("login");
     var username = "<%=session.getAttribute("username")%>";
     var form = document.getElementById("form1")
+
+    var today = new Date();
+    var day = today.getDay();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    document.getElementById("date").innerHTML = dateTime;
+    document.getElementById("date").value = dateTime;
 
     if (username === "null") {
         login.innerHTML = "登录/注册";

@@ -10,13 +10,9 @@ import com.zhexun.service.ArticleService;
 import com.zhexun.service.UserService;
 import com.zhexun.service.impl.ArticleServiceImpl;
 import com.zhexun.service.impl.UserServiceImpl;
-import com.zhexun.servlet.ReloadArticleServlet;
 import com.zhexun.util.JDBCUtil;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 import java.sql.Connection;
-import java.util.ArrayList;
 import java.util.List;
 
 public class Test {

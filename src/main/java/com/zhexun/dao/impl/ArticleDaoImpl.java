@@ -14,7 +14,7 @@ import java.util.List;
 public class ArticleDaoImpl implements ArticleDao {
     @Override
     public boolean postArticle(Connection conn, Article article) {
-        String sql = "INSERT INTO article(uid, title, content) VALUES(" + article.getUid() + ", '" + article.getTitle() + "', '" + article.getContent() + "')";
+        String sql = "INSERT INTO article(uid, uname, title, content, date) VALUES(" + article.getUid() + ", '" + article.getUname() + "', '" + article.getTitle() + "', '" + article.getContent() + "', '" + article.getDate() + "')";
         Statement st = null;
         int i = 0;
         try {
@@ -48,12 +48,14 @@ public class ArticleDaoImpl implements ArticleDao {
                 rs = statement.executeQuery(sql);
                 if(rs.next()) {
                     art.setUid(rs.getInt("uid"));
+                    art.setUname(rs.getString("uname"));
                     art.setTitle(rs.getString("title"));
                     art.setContent(rs.getString("content"));
-                    art.setDate(rs.getDate("date"));
+                    art.setDate(rs.getString("date"));
                     art.setView(rs.getInt("view"));
                     art.setLike(rs.getInt("like"));
                     art.setCollect(rs.getInt("collect"));
+                    art.setCover(rs.getString("cover"));
                     articles.add(new Article(art));
                     count--;
                 }

@@ -13,11 +13,13 @@ import java.util.List;
 public class ArticleServiceImpl implements ArticleService {
     ArticleDao articleDao = new ArticleDaoImpl();
     @Override
-    public boolean postArticle(int uid, String title, String content) {
+    public boolean postArticle(int uid, String uname, String title, String content, String date) {
         Article article = new Article();
         article.setUid(uid);
+        article.setUname(uname);
         article.setTitle(title);
         article.setContent(content);
+        article.setDate(date);
         Connection conn = JDBCUtil.getConnection();
         boolean result = false;
         result = articleDao.postArticle(conn, article);
