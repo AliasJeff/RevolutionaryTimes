@@ -38,8 +38,6 @@ public class PostArticleServlet extends HttpServlet {
         result = articleService.postArticle(uid, uname, title, content, date);
         if(result) {
             resp.sendRedirect("index.jsp");
-        } else {
-            resp.sendError(402, "发布失败");
         }
 
     }

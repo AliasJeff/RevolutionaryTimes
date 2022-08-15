@@ -123,10 +123,10 @@
             </ul>
         </div>
         <%--TODO: 支持markdown--%>
-        <form id="form1" action="" method="post">
+        <form id="formArticle" action="" method="post">
             <section>
                 <div class="form">
-                    <input type="text" class="form-title" id="art-title" name="art-title" placeholder="请输入文章标题（5~100个字）" required>
+                    <input autocomplete="off" type="text" class="form-title" id="art-title" name="art-title" placeholder="请输入文章标题（5~100个字）" required>
                 </div>
                 <hr/>
                 <div class="form">
@@ -141,7 +141,7 @@
                         <button id="saveDraft">保存草稿</button>
                     </li>
                     <li>
-                        <%--TODO: 下面的js无法调用，上传时间功能、添加封面、添加标签--%>
+                        <%--TODO: 添加封面、添加标签--%>
                         <button id="postButton" onclick="postArticle()">发布文章</button>
 <%--                        <button id="postButton" onclick="this.form.action='/postArticle'; this.form.submit();">发布文章</button>--%>
                     </li>
@@ -156,11 +156,12 @@
 <script>
     var login = document.getElementById("login");
     var username = "<%=session.getAttribute("username")%>";
-    var form = document.getElementById("form1")
+    var form = document.getElementById("formArticle")
 
     var today = new Date();
     var day = today.getDay();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    /*TODO: 缺少数字0*/
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
     document.getElementById("date").innerHTML = dateTime;
@@ -169,7 +170,7 @@
     if (username === "null") {
         login.innerHTML = "登录/注册";
     } else {
-        login.innerHTML = "当前用户：" + username;
+        login.innerHTML = "欢迎，" + username;
         login.href = "./userInfo.jsp";
     }
 

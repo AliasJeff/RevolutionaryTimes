@@ -9,4 +9,5 @@ import java.util.List;
 public interface ArticleDao {
     boolean postArticle(Connection conn, Article article);
     List<Article> selectAllArticle(Connection conn);
+    Article selectArticleByCondition(Connection conn, Article article);
 }

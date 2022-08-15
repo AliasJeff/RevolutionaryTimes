@@ -40,9 +40,11 @@
                 <ul>
                     <li><a href="./index.jsp">首页</a></li>
                     <li><a href="./userInfo.jsp">个人中心</a></li>
-                    <li><a href="./make.html">xxxx</a></li>
+                    <%--TODO: 支持查看所有视频、图片、文章--%>
+                    <li><a href="./allArticle.jsp">全部文章</a></li>
                     <%--TODO: 支持发布视频、图片、文章--%>
                     <li><a href="./postArticle.jsp">发布文章</a></li>
+                    <%--TODO: 宽度不够--%>
                     <li><a id="login" href="./login.jsp"></a></li>
                     <div class="nav-box"></div>
                 </ul>
@@ -167,89 +169,114 @@
     if (username === "null") {
         login.innerHTML = "登录/注册";
     } else {
-        login.innerHTML = "当前用户：" + username;
+        login.innerHTML = "欢迎，" + username;
         login.href = "#";
     }
 
-    <%--        <%--%>
-    <%--        List<Article> articles = (List<Article>) request.getAttribute("article");--%>
-    <%--//       List<Article> articles = new ArrayList<>();--%>
-    <%--        for(int i = 0; i < articles.size(); i++) {%>--%>
-    <%--        articleTitle[<%=i%>] = <%=((String) articles.get(i).getTitle())%>;--%>
-    <%--        articleContent[<%=i%>] = <%=((String) articles.get(i).getContent())%>;--%>
-    <%--        articleDate[<%=i%>] = <%=((Date) articles.get(i).getDate())%>;--%>
-    <%--        articleView[<%=i%>] = <%=((int) articles.get(i).getView())%>;--%>
-    <%--        articleLike[<%=i%>] = <%=((int) articles.get(i).getLike())%>;--%>
-    <%--        articleCollect[<%=i%>] = <%=((int) articles.get(i).getCollect())%>;--%>
-    <%--        <%}%>--%>
+<%--            <%--%>
+<%--            List<Article> articles = (List<Article>) request.getAttribute("article");--%>
+<%--    //       List<Article> articles = new ArrayList<>();--%>
+<%--            for(int i = 0; i < articles.size(); i++) {%>--%>
+<%--            articleTitle[<%=i%>] = <%=((String) articles.get(i).getTitle())%>;--%>
+<%--            articleContent[<%=i%>] = <%=((String) articles.get(i).getContent())%>;--%>
+<%--            articleDate[<%=i%>] = <%=((String) articles.get(i).getDate())%>;--%>
+<%--            articleView[<%=i%>] = <%=((int) articles.get(i).getView())%>;--%>
+<%--            articleLike[<%=i%>] = <%=((int) articles.get(i).getLike())%>;--%>
+<%--            articleCollect[<%=i%>] = <%=((int) articles.get(i).getCollect())%>;--%>
+<%--            <%}%>--%>
 
     uname1 = "<%=request.getAttribute("uname1")%>";
     uname2 = "<%=request.getAttribute("uname2")%>";
     uname3 = "<%=request.getAttribute("uname3")%>";
+    uname3 = "<%=request.getAttribute("uname4")%>";
 
     title1 = "<%=request.getAttribute("title1")%>";
     title2 = "<%=request.getAttribute("title2")%>";
     title3 = "<%=request.getAttribute("title3")%>";
+    title4 = "<%=request.getAttribute("title4")%>";
+    title5 = "<%=request.getAttribute("title5")%>";
+    title6 = "<%=request.getAttribute("title6")%>";
 
+    /*TODO: request无法读取有换行的数据*/
     content1 = "<%=request.getAttribute("content1")%>";
     content2 = "<%=request.getAttribute("content2")%>";
     content3 = "<%=request.getAttribute("content3")%>";
+    content4 = "<%=request.getAttribute("content4")%>";
 
     date1 = "<%=request.getAttribute("date1")%>";
     date2 = "<%=request.getAttribute("date2")%>";
     date3 = "<%=request.getAttribute("date3")%>";
+    date4 = "<%=request.getAttribute("date4")%>";
 
     var info = '';
-    info = '<li><a href="#"><span>' + title1 + '</span></a></li>' +
-        '<li><a href="#"><span>' + title2 + '</span></a></li>' +
-        '<li><a href="#"><span>' + title3 + '</span></a></li>';
+    info = '<li><a href="article.jsp?Article=' + title1 + '"><span>' + title1 + '</span></a></li>' +
+        '<li><a href="article.jsp?Article=' + title2 + '"><span>' + title2 + '</span></a></li>' +
+        '<li><a href="article.jsp?Article=' + title3 + '"><span>' + title3 + '</span></a></li>' +
+        '<li><a href="article.jsp?Article=' + title4 + '"><span>' + title4 + '</span></a></li>' +
+        '<li><a href="article.jsp?Article=' + title5 + '"><span>' + title5 + '</span></a></li>' +
+        '<li><a href="article.jsp?Article=' + title6 + '"><span>' + title6 + '</span></a></li>';
     document.getElementById("art-list").innerHTML = info;
 
     /*TODO: 传列表，展示获赞、阅读、收藏数*/
     info = '<h2 class="art-txt"><span>最新文章</span></h2>' +
         '<div class="art-model">' +
-        '<h3><a href="#">' + title1 + '</a></h3>' +
+        '<h3><a href="article.jsp?Article=' + title1 + '">' + title1 + '</a></h3>' +
         '<p class="dateview"><span>' + '发布时间：' + date1 + '</span> <span>' + '作者：' + uname1 + '</span></p>' +
         '<dl class="img-txt">' +
         '<dt>' +
-        '<img src="img/7.jpg" alt="文章1" title="文章1">' +
+        '<img src="img/7.jpg" alt="' + title1 + '" title="' + title1 + '">' +
         '</dt>' +
         '<dd>' +
         '<p class="detail">' + content1 + '</p>' +
-        '<a href="article.html" class="btn  c-fff">查看全文</a>' +
+        '<a href="article.jsp?Article=' + title1 + '" class="btn  c-fff">'+ '查看全文</a>' +
         '</dd>' +
         '</dl>' +
         '</div>' +
 
         '<div class="art-model">' +
-        '<h3><a href="#">' + title2 + '</a></h3>' +
+        '<h3><a href="article.jsp?Article=' + title2 + '">' + title2 + '</a></h3>' +
         '<p class="dateview"><span>' + '发布时间：' + date2 + '</span> <span>' + '作者：' + uname2 + '</span></p>' +
         '<dl class="img-txt">' +
         '<dt>' +
-        '<img src="img/7.jpg" alt="文章1" title="文章1">' +
+        '<img src="img/7.jpg" alt="' + title2 + '" title="' + title2 + '">' +
         '</dt>' +
         '<dd>' +
         '<p class="detail">' + content2 + '</p>' +
-        '<a href="article.html" class="btn  c-fff">查看全文</a>' +
+        '<a href="article.jsp?Article=' + title1 + '" class="btn  c-fff">查看全文</a>' +
         '</dd>' +
         '</dl>' +
         '</div>' +
 
         '<div class="art-model">' +
-        '<h3><a href="#">' + title3 + '</a></h3>' +
+        '<h3><a href="article.jsp?Article=' + title3 + '">' + title3 + '</a></h3>' +
         '<p class="dateview"><span>' + '发布时间：' + date3 + '</span> <span>' + '作者：' + uname3 + '</span></p>' +
         '<dl class="img-txt">' +
         '<dt>' +
-        '<img src="img/7.jpg" alt="文章1" title="文章1">' +
+        '<img src="img/7.jpg" alt="' + title3 + '" title="' + title3 + '">' +
         '</dt>' +
         '<dd>' +
         '<p class="detail">' + content3 + '</p>' +
-        '<a href="article.html" class="btn  c-fff">查看全文</a>' +
+        '<a href="article.jsp?Article=' + title1 + '" class="btn  c-fff">查看全文</a>' +
+        '</dd>' +
+        '</dl>' +
+        '</div>' +
+
+        '<div class="art-model">' +
+        '<h3><a href="article.jsp?Article=' + title4 + '">' + title4 + '</a></h3>' +
+        '<p class="dateview"><span>' + '发布时间：' + date4 + '</span> <span>' + '作者：' + uname4 + '</span></p>' +
+        '<dl class="img-txt">' +
+        '<dt>' +
+        '<img src="img/7.jpg" alt="' + title4 + '" title="' + title4 + '">' +
+        '</dt>' +
+        '<dd>' +
+        '<p class="detail">' + content4 + '</p>' +
+        '<a href="article.jsp?Article=' + title1 + '" class="btn  c-fff">查看全文</a>' +
         '</dd>' +
         '</dl>' +
         '</div>';
 
     document.getElementById("art-right r").innerHTML = info;
+
 
 
 </script>

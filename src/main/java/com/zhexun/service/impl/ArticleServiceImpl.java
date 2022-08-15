@@ -35,4 +35,12 @@ public class ArticleServiceImpl implements ArticleService {
         JDBCUtil.release(conn);
         return article;
     }
+
+    @Override
+    public Article selectArticleByCondition(Article article) {
+        Connection conn = JDBCUtil.getConnection();
+        article = articleDao.selectArticleByCondition(conn, article);
+        JDBCUtil.release(conn);
+        return article;
+    }
 }

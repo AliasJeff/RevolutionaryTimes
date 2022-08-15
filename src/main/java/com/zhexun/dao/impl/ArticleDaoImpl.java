@@ -77,4 +77,42 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         return articles;
     }
+
+    @Override
+    public Article selectArticleByCondition(Connection conn, Article article) {
+        String sql = "SELECT * FROM article WHERE " + article.getQueryCondition();
+        System.out.println(sql);
+        Statement statement = null;
+        ResultSet rs = null;
+        Article result = new Article();
+        try {
+            statement = conn.createStatement();
+            rs = statement.executeQuery(sql);
+            if (rs.next()) {
+                result.setUid(rs.getInt("uid"));
+                result.setUname(rs.getString("uname"));
+                result.setTitle(rs.getString("title"));
+                result.setContent(rs.getString("content"));
+                result.setDate(rs.getString("date"));
+                result.setView(rs.getInt("view"));
+                result.setLike(rs.getInt("like"));
+                result.setCollect(rs.getInt("collect"));
+                result.setCover(rs.getString("cover"));
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return result;
+    }
 }

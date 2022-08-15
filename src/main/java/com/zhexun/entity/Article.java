@@ -122,4 +122,34 @@ public class Article {
     public void setCover(String cover) {
         this.cover = cover;
     }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "articleid=" + articleid +
+                ", uid='" + uid + '\'' +
+                ", uname='" + uname + '\'' +
+                ", title='" + title + '\'' +
+                '}';
+    }
+
+    public String getQueryCondition() {
+        StringBuilder stringBuilder = new StringBuilder("1=1");
+        if (articleid != 0) {
+            stringBuilder.append(" and articleid=").append(articleid);
+        }
+        if (uid != 0) {
+            stringBuilder.append(" and uid= '").append(uid).append("'");
+        }
+
+        if (uname != null) {
+            stringBuilder.append(" and uname= '").append(uname).append("'");
+        }
+
+        if (title != null) {
+            stringBuilder.append(" and title=").append(title);
+        }
+
+        return stringBuilder.toString();
+    }
 }

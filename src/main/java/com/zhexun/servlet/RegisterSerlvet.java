@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import static java.lang.System.out;
+
 @WebServlet(name = "RegisterServlet" ,urlPatterns = "/register")
 public class RegisterSerlvet extends HttpServlet {
     @Override
@@ -44,10 +46,12 @@ public class RegisterSerlvet extends HttpServlet {
 //            out.println("</BODY>");
 //            out.println("</HTML>");
 
+//            out.println("<script>alert('注册成功！');");
             resp.sendRedirect("login.jsp");
         }
-        else {    // 注册失败
-            resp.sendError(401, "注册失败");
-        }
+        /*TODO: 注册失败401报错*/
+//        else {    // 注册失败
+//            out.println("<script>alert('注册失败！');");
+//        }
     }
 }
