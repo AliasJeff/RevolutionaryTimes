@@ -20,12 +20,12 @@
 
 <body>
 <form id="formArticle" autocomplete="off" action="" method="post">
-<%--    <input id="articleTitle" name="articleTitle">--%>
+    <textarea id="articleTitle" name="articleTitle"></textarea>
 </form>
 </body>
 <script>
     var title = "<%=request.getParameter("Article")%>";
-    // document.getElementById("articleTitle").innerHTML = title;
+    document.getElementById("articleTitle").innerText = title;
     document.getElementById("formArticle").action = "/reloadArticle";
     document.getElementById("formArticle").submit();
 

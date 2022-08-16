@@ -92,39 +92,26 @@
 
         .section-top {
             width: 100%;
-            height: 300px;
+            height: 60px;
             display: flex;
             justify-content: space-evenly;
             margin-top: 50px;
         }
 
         .section-top-middle {
-            width: 300px;
-            height: 300px;
-            border-radius: 50%;
-            background-image: url('./image/image/logo.jpg');
-            background-size: cover;
-            background-position-y: -30px;
-            margin: 0 50px;
-            border: 15px solid rgba(0, 0, 0, 0.151);
+            width: 400px;
+            height: 60px;
         }
 
-        .section-top-left,
         .section-top-right {
-            width: 300px;
-            height: 300px;
-            font-size: 22px;
-            margin-top: 30px;
+            width: 400px;
+            height: 60px;
+            font-size: 18px;
         }
 
-        .section-top-left {
-            text-align: right;
-        }
-
-        .section-top p {
-            font-size: 26px;
+        .section-top a {
+            font-size: 18px;
             color: #22A39F;
-            margin: 5px 0;
         }
 
         .section-middle,
@@ -137,6 +124,10 @@
 
         .section-bottom {
             position: relative;
+        }
+
+        .section-middle .content {
+            width: 70%;
         }
 
         .section-middle-box {
@@ -299,51 +290,31 @@
             <ul>
                 <li><a href="./index.jsp">首页</a></li>
                 <li><a href="./userInfo.jsp">个人中心</a></li>
-                <li><a href="./make.html">xxxx</a></li>
+                <li><a href="./allArticle.jsp">全部文章</a></li>
                 <li><a href="./postArticle.jsp">发布文章</a></li>
                 <li><a href="./login.jsp">登录/注册</a></li>
                 <div class="nav-box"></div>
             </ul>
         </div>
-        <div class="img">
-            <img id="articleCover" src="./image/image/2.png">
-            <div class="headline" id="headline"></div>
+        <div class="img" id="img">
+
         </div>
         <div class="main">
             <section>
                 <div class="section-top">
-                    <div class="section-top-left">
-                        <p> :Name<br/></p>
-                        GOAT<br/>
-                        <p>:Age<br/></p>
-                        20years<br/>
-                        <p>:Speciality<br/></p>
-                        Illustration, logo design, scene Perspective<br/>
-
-                    </div>
                     <div class="section-top-middle">
-
+                        <a>阅读：</a><a class="view" id="view"></a>
+                        <a>点赞：</a><a class="like" id="like"></a>
+                        <a>收藏：</a><a class="collect" id="collect"></a>
                     </div>
                     <div class="section-top-right">
-                        <p>introduce:</p>
-                        A college student who loves painting pursues a variety of painting styles, improves himself
-                        through a lot of practice, and challenges innovation again and again
-
+                        <a>发布时间：</a><a class="date" id="date"></a>
+                        <a>作者：</a><a class="author" id="author"></a>
                     </div>
                 </div>
                 <div class="section-middle">
-                    <h2 style="font-size: 30px; margin-top: 50px;">About the painter</h2>
-                    <span>“Painting is the art of life”</span>
-                    <div class="section-middle-box">
-                        <div class="section-middle-left">
-                            <span>Sep2019-Jun2020</span>
-                        </div>
-                        <div class="section-middle-right">
-                                <span>See the interest in capturing images, and use the lens to light up the mountains
-                                    and rivers.</span>
-                        </div>
-                    </div>
-
+                    <span class="content" id="content" ></span>
+                    <div style="border-bottom:solid 1px #000; padding-bottom: 20px; width: 100%; display: flex; margin: 50px 0;"></div>
                     <div class="section-middle-box">
                         <div class="section-middle-left">
                             <span>Sep2020-Jun2021</span>
@@ -367,124 +338,11 @@
                                     On the paper.</span>
                         </div>
                     </div>
-
-                    <h2 style="font-size: 30px; margin: 30px 0;">Painting everyday</h2>
-                    <span>“My favorite illustration”</span>
-
-                    <div class="section-middle-box">
-                        <div class="section-middle-left">
-                                <span>The illustration lines are very tense, and it is obvious that they are drawn
-                                    rather than polished. They are both powerful and elegant. Just like good sketch
-                                    lines, they are good at both plane expression and spatial expression.</span>
-                        </div>
-                        <div class="section-middle-right">
-                            <img src="./image/2 (10).png" alt="">
-                        </div>
-                    </div>
-
-                    <div class="section-middle-box">
-                        <div class="section-middle-right">
-                            <img src="./image/2 (1).png" alt="">
-                        </div>
-                        <div class="section-middle-left">
-                                <span>Style and personality, combining technology with life to further express
-                                    themselves</span>
-                        </div>
-
-                    </div>
-
-                    <h2 style="font-size: 30px; margin: 30px 0;"></h2>
-
-                    <div class="section-middle-box" style="border-bottom:solid 1px #000; padding-bottom: 40px;">
-                        <div class="section-middle-left" style="width: 100%;">
-                                <span>The works directly attack the soul "-- Taking the road that others dare not take
-                                    and interpreting their own legends
-                                </span>
-                        </div>
-                    </div>
                 </div>
 
             </section>
-            <article>
-                <div class="section-bottom">
-
-                    <h2 style="margin-top: 60px; color: #22A39F">Tools</h2>
-                    <ul class="Skills" style="border-bottom:solid 1px #000; padding-bottom: 40px;">
-                        <li><span>Hand drawn</span>
-                            <p>★★★★☆</p>
-                        </li>
-                        <li><span>Ubee</span>
-                            <p>★★★★★</p>
-                        </li>
-                        <li><span>Sketch</span>
-                            <p>★★★★☆</p>
-                        </li>
-                        <li><span>perspective</span>
-                            <p>★★★★☆</p>
-                        </li>
-                        <li><span>color</span>
-                            <p>★★★★☆</p>
-                        </li>
-                        <li><span>structure</span>
-                            <p>★★★★★</p>
-                        </li>
-                    </ul>
-
-                </div>
-            </article>
-            <aside>
-                <h2 style="font-size: 30px; margin-top: 30px;">Readme</h2><br/>
-                <span>“From a university painter's Autobiography.”</span>
-                <p style="margin-top: 50px;font-size: 18px; color: #37373796;">
-                    <br> Find the meaning of painting --- get the answer <br>
-
-                    <br> My heart is clear: "the stage is as big as the heart". The meaning of the "heart" in this
-                    <br> sentence is that we do a lot of things. Most of the time, it is our "heart" that traps us. Our
-                    <br> "heart" has a lot of fear! <br>
-
-                    <br> Many illustrators and artists encounter the bottleneck of entrepreneurship. The bottleneck of
-                    <br> career is also because of "heart", because of their confusion and chaos. In the past, I was
-                    <br> always looking for the meaning of painting. After absorbing knowledge and internalizing
-                    <br> practice, I found the answer at the current stage of life: painting is meaningless, meaning is
-                    <br> given by myself! <br>
-
-                    <br> The most important thing about painting is to love itself. Just like our language expression,
-                    <br> most of the time, our language sounds because of our inner feelings and feelings! <br>
-
-                    <br> My painting experience <br>
-
-                    <br> My "heart" trapped my hand. In the absence of relevant knowledge in the past, I always felt
-                    that
-                    <br> my paintings were bad and that others' paintings were good! Every time I finish painting, I
-                    <br> drive myself to be more diligent, but I am not completely immersed in the process of painting
-                    <br> and do not maintain enough awareness. <br>
-
-                    <br> It was in 2019 that I felt I was mixing blood. In this year, I established a sense of
-                    <br> self-worth: my "heart" began to grow, and I really understood that a journey of a thousand
-                    miles
-                    <br> began with one step. I cherish my every stroke. When depicting each painting, always return to
-                    <br> your heart to feel the picture! <br>
-
-                    <br> When I saw other illustrators' amazing paintings, I learned to be grateful and happy. And the
-                    <br> focus of the past is: my painting is not good enough! The change of these two angles brings
-                    <br> totally different frequency feelings! <br>
-
-                    <br> When I began to see the real existence of everyone, I saw the real existence of every tree and
-                    <br> plant. My inspiration library began to open continuously, and I got the most original learning
-                    <br> library: nature. When I paint a lot, I am in a state of no self, and I have no idea in the
-                    <br> process of painting. For example, I recently received the illustration list: flowers. During
-                    <br> this period of time, I will study flowers and the stems and leaves of plants. My work has
-                    become
-                    <br> more and more pure!
-                </p>
-            </aside>
         </div>
-        <div class="bottom">
-            <img src="./image/2 (6).png" alt="">
-            <img src="./image/2 (2).png" alt="">
-            <img src="./image/2 (4).png" alt="">
-            <img src="./image/2 (9).png" alt="">
-        </div>
+
         <div class="shell-main-footer">
             <span>我是底边栏</span>
         </div>
@@ -496,7 +354,7 @@
     var username = "<%=session.getAttribute("username")%>";
 
     var uid = "<%=request.getAttribute("articleUid")%>";
-    var auther = "<%=request.getAttribute("articleUname")%>";
+    var author = "<%=request.getAttribute("articleUname")%>";
     var title = "<%=request.getAttribute("articleTitle")%>";
     var content = "<%=request.getAttribute("articleContent")%>";
     var date = "<%=request.getAttribute("articleDate")%>";
@@ -507,14 +365,26 @@
 
     document.title = title;
 
-    if(username === "null") {
+    var info = '';
+    info = "<img id='articleCover' src='" + './image/image/2.png' + "'>" +
+        "<div class='headline' id='headline'>" + title + "</div>";
+    document.getElementById("img").innerHTML = info;
+
+    document.getElementById("view").innerHTML = view;
+    document.getElementById("like").innerHTML = like;
+    document.getElementById("collect").innerHTML = collect;
+    document.getElementById("date").innerHTML = date;
+    document.getElementById("author").innerHTML = author;
+    document.getElementById("content").innerHTML = content;
+
+    if(username === "null") {  // TODO: 这段之后的js代码无效，原因未知，所以其他js放在此段的上面
         login.innerHTML = "登录/注册";
     } else {
         login.innerHTML = "欢迎，" + username;
-        login.href = "#";
+        login.href = "./userInfo.jsp";
     }
 
-    document.getElementById("headline").innerHTML = title;
+
 
 
 </script>

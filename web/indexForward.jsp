@@ -112,7 +112,7 @@
                         <div class="art Link mt20 clearfix">
                             <h2 class="art-txt"><span>个人信息</span></h2>
                             <ul class="art-list">
-                                <li><a href="#"><span>个人中心</span></a></li>
+                                <li><a href="userInfo.jsp"><span>个人中心</span></a></li>
                                 <li><a href="#"><span>我的收藏</span></a></li>
                                 <li><a href="#"><span>我的发布</span></a></li>
                                 <li><a href="#"><span>消息中心</span></a></li>
@@ -136,21 +136,6 @@
     </div>
 </form>
 </body>
-<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
-<script>
-    window.addEventListener('scroll', function () {
-        let top = window.scrollY
-        if (top !== 0) {
-            $('.shell-top').css('top', '-100vh')
-            $('.shell-main').css('top', '0')
-
-        } else {
-            $('.shell-top').css('top', '0px')
-            $('.shell-main').css('top', '100vh')
-        }
-    })
-
-</script>
 <script>
     var login = document.getElementById("login");
     var username = "<%=session.getAttribute("username")%>";
@@ -170,7 +155,7 @@
         login.innerHTML = "登录/注册";
     } else {
         login.innerHTML = "欢迎，" + username;
-        login.href = "#";
+        login.href = "./userInfo.jsp";
     }
 
 <%--            <%--%>
@@ -277,8 +262,20 @@
 
     document.getElementById("art-right r").innerHTML = info;
 
+</script>
+<script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
+<script>
+    window.addEventListener('scroll', function () {
+        let top = window.scrollY
+        if (top !== 0) {
+            $('.shell-top').css('top', '-100vh')
+            $('.shell-main').css('top', '0')
 
+        } else {
+            $('.shell-top').css('top', '0px')
+            $('.shell-main').css('top', '100vh')
+        }
+    })
 
 </script>
-
 </html>

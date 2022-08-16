@@ -127,7 +127,7 @@ public class Article {
     public String toString() {
         return "Article{" +
                 "articleid=" + articleid +
-                ", uid='" + uid + '\'' +
+                ", uid=" + uid +
                 ", uname='" + uname + '\'' +
                 ", title='" + title + '\'' +
                 '}';
@@ -139,7 +139,7 @@ public class Article {
             stringBuilder.append(" and articleid=").append(articleid);
         }
         if (uid != 0) {
-            stringBuilder.append(" and uid= '").append(uid).append("'");
+            stringBuilder.append(" and uid=").append(uid);
         }
 
         if (uname != null) {
@@ -147,7 +147,7 @@ public class Article {
         }
 
         if (title != null) {
-            stringBuilder.append(" and title=").append(title);
+            stringBuilder.append(" and title= '").append(title).append("'");
         }
 
         return stringBuilder.toString();

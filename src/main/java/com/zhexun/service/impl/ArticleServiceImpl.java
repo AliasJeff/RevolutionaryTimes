@@ -37,10 +37,12 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article selectArticleByCondition(Article article) {
+    public Article selectArticleByCondition(String title) {
         Connection conn = JDBCUtil.getConnection();
-        article = articleDao.selectArticleByCondition(conn, article);
+        Article article = new Article();
+        article.setTitle(title);
+        Article result = articleDao.selectArticleByCondition(conn, article);
         JDBCUtil.release(conn);
-        return article;
+        return result;
     }
 }

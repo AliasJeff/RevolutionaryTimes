@@ -81,7 +81,6 @@ public class ArticleDaoImpl implements ArticleDao {
     @Override
     public Article selectArticleByCondition(Connection conn, Article article) {
         String sql = "SELECT * FROM article WHERE " + article.getQueryCondition();
-        System.out.println(sql);
         Statement statement = null;
         ResultSet rs = null;
         Article result = new Article();

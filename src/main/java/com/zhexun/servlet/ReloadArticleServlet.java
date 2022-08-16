@@ -23,7 +23,7 @@ public class ReloadArticleServlet extends HttpServlet {
         Article article = new Article();
         article.setTitle(articleTitle);
         ArticleService articleService = new ArticleServiceImpl();
-        article = articleService.selectArticleByCondition(article);
+        article = articleService.selectArticleByCondition(article.getTitle());
 
         req.setAttribute("articleUid", article.getUid());
         req.setAttribute("articleUname", article.getUname());
