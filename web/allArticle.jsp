@@ -11,6 +11,13 @@
     <title>全部文章</title>
 </head>
 <body>
-<%--TODO: 全部文章页--%>
+<form id="formAllArticle" autocomplete="off" action="" method="post">
+
+</form>
 </body>
+<script>
+    document.getElementById("formAllArticle").action = "/reloadAllArticle";
+    document.getElementById("formAllArticle").submit();
+
+</script>
 </html>

@@ -10,4 +10,5 @@ public interface ArticleDao {
     boolean postArticle(Connection conn, Article article);
     List<Article> selectAllArticle(Connection conn);
     Article selectArticleByCondition(Connection conn, Article article);
+    List<Article> selectAllArticleByAuthor(Connection conn, String name);
 }

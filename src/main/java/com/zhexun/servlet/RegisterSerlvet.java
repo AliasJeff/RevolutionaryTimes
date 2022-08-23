@@ -32,7 +32,7 @@ public class RegisterSerlvet extends HttpServlet {
             e.printStackTrace();
         }
         if (result) {    // 注册成功;
-            req.getSession().setAttribute("user", result);
+//            req.getSession().setAttribute("user", result);
 
 //            resp.setContentType("text/html;charset=UTF-8");
 //            PrintWriter out=resp.getWriter();
@@ -50,8 +50,8 @@ public class RegisterSerlvet extends HttpServlet {
             resp.sendRedirect("login.jsp");
         }
         /*TODO: 注册失败401报错*/
-//        else {    // 注册失败
-//            out.println("<script>alert('注册失败！');");
-//        }
+        else {    // 注册失败
+            out.println("<script>alert('注册失败！');");
+        }
     }
 }

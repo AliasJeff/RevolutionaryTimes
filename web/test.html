@@ -2,37 +2,42 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>上传</title>
-    <link rel="stylesheet" href="./css/all.css">
-    <link rel="stylesheet" href="./css/nav.css">
+    <title>title</title>
 </head>
 <style>
-
+    .table {
+        text-align: center;
+        margin-top: 13px;
+    }
+    .table td{
+        background-color: #ffffff;
+    }
 </style>
 <body>
-
-<script>
-    function menuFix() {
-        var sfEls = document.getElementById("fm").getElementsByTagName("li");
-        for (var i=0; i<sfEls.length; i++) {
-            sfEls[i].onmouseover=function() {
-                this.className+=(this.className.length>0? " ": "") + "sfhover";
-            }
-            sfEls[i].onMouseDown=function() {
-                this.className+=(this.className.length>0? " ": "") + "sfhover";
-            }
-            sfEls[i].onMouseUp=function() {
-                this.className+=(this.className.length>0? " ": "") + "sfhover";
-            }
-            sfEls[i].onmouseout=function() {
-                this.className=this.className.replace(new RegExp("( ?|^)sfhover\\b"),
-                    "");
-            }
-        }
-    }
-    window.onload=menuFix;
-</script>
+<table class="table" width="100%" border="0" cellspacing="1" cellpadding="4" align="center" bgcolor="#cccccc">
+    <tr>
+        <td>头像</td>
+        <td>用户名</td>
+        <td>密码</td>
+        <td>简介</td>
+        <td>邮箱</td>
+        <td>生日</td>
+        <td>权限</td>
+    </tr>
+    <tr>
+        <td>row 2, cell 1</td>
+        <td>row 2, cell 2</td>
+        <td>row 2, cell 2</td>
+        <td>row 2, cell 2</td>
+        <td>row 2, cell 2</td>
+        <td>row 2, cell 2</td>
+        <td>row 2, cell 2</td>
+    </tr>
+</table>
 </body>
+<script>
+
+</script>
 </html>
 
 <!--原index内容-->

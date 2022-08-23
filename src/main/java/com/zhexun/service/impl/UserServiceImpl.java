@@ -71,10 +71,26 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public int getUidByCondition(User user) {
+    public User getUserByCondition(User user) {
         Connection conn = JDBCUtil.getConnection();
         User result = userDao.selectUserByCondition(conn, user);
         JDBCUtil.release(conn);
-        return result.getUid();
+        return result;
+    }
+
+    @Override
+    public List<User> getAllUser() {
+        Connection conn = JDBCUtil.getConnection();
+        List<User> result = userDao.getAllUser(conn);
+        JDBCUtil.release(conn);
+        return result;
+    }
+
+    @Override
+    public boolean updateUser(String username, User newUser) {
+        Connection conn = JDBCUtil.getConnection();
+        boolean result = userDao.updateUser(conn, username, newUser);
+        JDBCUtil.release(conn);
+        return result;
     }
 }

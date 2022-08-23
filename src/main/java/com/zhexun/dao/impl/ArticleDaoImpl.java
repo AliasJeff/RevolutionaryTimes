@@ -114,4 +114,49 @@ public class ArticleDaoImpl implements ArticleDao {
         }
         return result;
     }
+
+    @Override
+    public List<Article> selectAllArticleByAuthor(Connection conn, String name) {
+        int id = 100;
+        int count = 100;
+        List<Article> articles = new ArrayList<>();
+        Article art = new Article();
+        Statement statement = null;
+        ResultSet rs = null;
+        try {
+            while(count > 0 && id > 0) {
+                String sql = "SELECT * FROM article WHERE uname='" + name + "'" + "and articleid =" + id;
+                statement = conn.createStatement();
+                rs = statement.executeQuery(sql);
+                if(rs.next()) {
+                    art.setUid(rs.getInt("uid"));
+                    art.setUname(rs.getString("uname"));
+                    art.setTitle(rs.getString("title"));
+                    art.setContent(rs.getString("content"));
+                    art.setDate(rs.getString("date"));
+                    art.setView(rs.getInt("view"));
+                    art.setLike(rs.getInt("like"));
+                    art.setCollect(rs.getInt("collect"));
+                    art.setCover(rs.getString("cover"));
+                    articles.add(new Article(art));
+                    count--;
+                }
+                id--;
+            }
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                rs.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+            try {
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return articles;
+    }
 }

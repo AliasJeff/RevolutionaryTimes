@@ -27,7 +27,8 @@ public class PostArticleServlet extends HttpServlet {
         user.setUname((String) session.getAttribute("username"));
 //        user.setUname(req.getParameter("username"));
         UserService userService = new UserServiceImpl();
-        int uid = userService.getUidByCondition(user);
+        user = userService.getUserByCondition(user);
+        int uid = user.getUid();
         String uname = (String) session.getAttribute("username");
         String title = req.getParameter("art-title");
         String content = req.getParameter("art-content");
@@ -39,6 +40,7 @@ public class PostArticleServlet extends HttpServlet {
         if(result) {
             resp.sendRedirect("index.jsp");
         }
+        // TODO: else上传失败
 
     }
 }

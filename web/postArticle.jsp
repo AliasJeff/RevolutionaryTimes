@@ -116,9 +116,9 @@
             <ul>
                 <li><a href="./index.jsp">首页</a></li>
                 <li><a href="./userInfo.jsp">个人中心</a></li>
-                <li><a href="./make.html">xxxx</a></li>
+                <li><a href="./allArticle.jsp">全部文章</a></li>
                 <li><a href="./postArticle.jsp">发布文章</a></li>
-                <li><a id="login" href="./login.jsp"></a></li>
+                <li><a id="login" href="./login.jsp"> <%--js--%> </a></li>
                 <div class="nav-box"></div>
             </ul>
         </div>
@@ -154,6 +154,12 @@
 
 </body>
 <script>
+    <%
+    //获取当前请求的上一个URL，即访问登陆页面前的URL
+    String preUrl = request.getRequestURL().toString();
+    session.setAttribute("preUrl",preUrl);
+    %>
+
     var login = document.getElementById("login");
     var username = "<%=session.getAttribute("username")%>";
     var form = document.getElementById("formArticle")
@@ -176,7 +182,7 @@
 
     function postArticle() {
         if(username === "null") {
-            alert("请先登录！");
+            alert("未登录，请先登录！");
         } else {
             if(document.getElementById("art-title").value != null && document.getElementById("art-content").value != null){
                 form.action="/postArticle";

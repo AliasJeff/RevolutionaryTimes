@@ -8,9 +8,25 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html>
 <head>
-    <title>Title</title>
+    <title>个人中心</title>
+    <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="stylesheet" href="./css/common.css">
 </head>
 <body>
-<%--TODO: 用户中心页--%>
+<form id="form" autocomplete="off" action="/reloadUserInfo" method="post">
+
+</form>
 </body>
+<script>
+    var username = "<%=session.getAttribute("username")%>";
+
+    if (username === "null") {
+        alert("未登录，请先登录！");
+        window.history.back();
+    } else {
+        document.getElementById("form").submit();
+    }
+</script>
 </html>

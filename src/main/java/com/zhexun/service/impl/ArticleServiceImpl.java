@@ -7,6 +7,7 @@ import com.zhexun.service.ArticleService;
 import com.zhexun.util.JDBCUtil;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -37,12 +38,20 @@ public class ArticleServiceImpl implements ArticleService {
     }
 
     @Override
-    public Article selectArticleByCondition(String title) {
+    public Article selectArticleByCondition(Article article) {
         Connection conn = JDBCUtil.getConnection();
-        Article article = new Article();
-        article.setTitle(title);
-        Article result = articleDao.selectArticleByCondition(conn, article);
+        Article art = new Article();
+        art = articleDao.selectArticleByCondition(conn, article);
         JDBCUtil.release(conn);
-        return result;
+        return art;
+    }
+
+    @Override
+    public List<Article> getMyArticle(String name) {
+        Connection conn = JDBCUtil.getConnection();
+        List<Article> articles;
+        articles = articleDao.selectAllArticleByAuthor(conn, name);
+        JDBCUtil.release(conn);
+        return articles;
     }
 }

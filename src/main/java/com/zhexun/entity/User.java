@@ -9,12 +9,12 @@ public class User {
     private String email;
     private String birthday;
     private int collectArticleid;
-    private int access;
+    private String access;
 
     public User() {
     }
 
-    public User(int uid, String uname, String upassword, String uintroduce, String avatar, String email, String birthday, int collectArticleid, int access) {
+    public User(int uid, String uname, String upassword, String uintroduce, String avatar, String email, String birthday, int collectArticleid, String access) {
         this.uid = uid;
         this.uname = uname;
         this.upassword = upassword;
@@ -24,6 +24,17 @@ public class User {
         this.birthday = birthday;
         this.collectArticleid = collectArticleid;
         this.access = access;
+    }
+
+    public User(User user) {
+        this.uid = user.getUid();
+        this.uname = user.getUname();
+        this.upassword = user.getUpassword();
+        this.uintroduce = user.getUintroduce();
+        this.avatar = user.getAvatar();
+        this.email = user.getEmail();
+        this.birthday = user.getBirthday();
+        this.access = user.getAccess();
     }
 
     public int getUid() {
@@ -90,36 +101,97 @@ public class User {
         this.collectArticleid = collectArticleid;
     }
 
-    public int getAccess() {
+    public String getAccess() {
         return access;
     }
 
-    public void setAccess(int access) {
+    public void setAccess(String access) {
         this.access = access;
     }
 
-    @Override
-    public String toString() {
+    public String myToString() {
         return "User{" +
-                "uid=" + uid +
+                "avatar='" + avatar + '\'' +
+                ", uid=" + uid +
                 ", uname='" + uname + '\'' +
                 ", upassword='" + upassword + '\'' +
+                ", uintroduce='" + uintroduce + '\'' +
+                ", email='" + email + '\'' +
+                ", birthday='" + birthday + '\'' +
                 '}';
     }
 
     public String getQueryCondition() {
         StringBuilder stringBuilder = new StringBuilder("1=1");
+        if (avatar != null) {
+            stringBuilder.append(" and avatar= '").append(uid).append("'");
+        }
         if (uid != 0) {
             stringBuilder.append(" and uid=").append(uid);
         }
         if (uname != null) {
             stringBuilder.append(" and uname= '").append(uname).append("'");
         }
-
         if (upassword != null) {
             stringBuilder.append(" and upassword= '").append(upassword).append("'");
         }
+        if (uintroduce != null) {
+            stringBuilder.append(" and uintroduce= '").append(uintroduce).append("'");
+        }
+        if (email != null) {
+            stringBuilder.append(" and email= '").append(email).append("'");
+        }
+        if (birthday != null) {
+            stringBuilder.append(" and birthday= '").append(birthday).append("'");
+        }
 
         return stringBuilder.toString();
+    }
+
+    public String getUpdateQuery() {
+        StringBuilder sb = new StringBuilder();
+        if (avatar != null && !avatar.equals("")) {
+            if(sb.isEmpty())
+                sb.append("avatar= '").append(avatar).append("'");
+            else
+                sb.append(" and avatar= '").append(avatar).append("'");
+        }
+        if (uid != 0) {
+            if(sb.isEmpty())
+                sb.append("uid=").append(uid);
+            else
+                sb.append(" and uid=").append(uid);
+        }
+        if (uname != null && !uname.equals("")) {
+            if(sb.isEmpty())
+                sb.append("uname= '").append(uname).append("'");
+            else
+                sb.append(" and uname= '").append(uname).append("'");
+        }
+        if (upassword != null && !upassword.equals("")) {
+            if(sb.isEmpty())
+                sb.append("upassword= '").append(upassword).append("'");
+            else
+                sb.append(" and upassword= '").append(upassword).append("'");
+        }
+        if (uintroduce != null && !uintroduce.equals("")) {
+            if(sb.isEmpty())
+                sb.append("uintroduce= '").append(uintroduce).append("'");
+            else
+                sb.append(" and uintroduce= '").append(uintroduce).append("'");
+        }
+        if (email != null && !email.equals("")) {
+            if(sb.isEmpty())
+                sb.append("email= '").append(email).append("'");
+            else
+                sb.append(" and email= '").append(email).append("'");
+        }
+        if (birthday != null && !birthday.equals("")) {
+            if(sb.isEmpty())
+                sb.append("birthday= '").append(birthday).append("'");
+            else
+                sb.append(" and birthday= '").append(birthday).append("'");
+        }
+        return sb.toString();
     }
 }

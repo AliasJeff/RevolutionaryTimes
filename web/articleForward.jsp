@@ -292,7 +292,7 @@
                 <li><a href="./userInfo.jsp">个人中心</a></li>
                 <li><a href="./allArticle.jsp">全部文章</a></li>
                 <li><a href="./postArticle.jsp">发布文章</a></li>
-                <li><a href="./login.jsp">登录/注册</a></li>
+                <li><a id="login" href="./login.jsp"> <%--js--%> </a></li>
                 <div class="nav-box"></div>
             </ul>
         </div>
@@ -365,10 +365,10 @@
 
     document.title = title;
 
-    var info = '';
-    info = "<img id='articleCover' src='" + './image/image/2.png' + "'>" +
+    var html = '';
+    html = "<img id='articleCover' src='" + './image/image/2.png' + "'>" +
         "<div class='headline' id='headline'>" + title + "</div>";
-    document.getElementById("img").innerHTML = info;
+    document.getElementById("img").innerHTML = html;
 
     document.getElementById("view").innerHTML = view;
     document.getElementById("like").innerHTML = like;
@@ -377,7 +377,7 @@
     document.getElementById("author").innerHTML = author;
     document.getElementById("content").innerHTML = content;
 
-    if(username === "null") {  // TODO: 这段之后的js代码无效，原因未知，所以其他js放在此段的上面
+    if(username === "null") {
         login.innerHTML = "登录/注册";
     } else {
         login.innerHTML = "欢迎，" + username;
@@ -390,6 +390,12 @@
 </script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
 <script>
+    <%
+    //获取当前请求的上一个URL，即访问登陆页面前的URL
+    String preUrl = request.getRequestURL().toString();
+    session.setAttribute("preUrl",preUrl);
+    %>
+
     window.addEventListener('scroll', function () {
         let top = window.scrollY
         console.log(top)
