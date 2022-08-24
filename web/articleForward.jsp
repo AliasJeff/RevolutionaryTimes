@@ -6,15 +6,17 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <html lang="en">
 
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title></title>
+    <title>${article.title}</title>
     <link rel="stylesheet" href="./css/nav.css">
     <link rel="stylesheet" href="./css/all.css">
+    <link rel="stylesheet" href="./css/comment.css">
     <style>
         body .shell-main-nav ul .nav-box {
             left: 360px;
@@ -26,7 +28,8 @@
         }
 
         body {
-            background-color: rgb(248, 248, 248);
+            /*background-color: rgb(248, 248, 248);*/
+            background-color: rgb(241,244,223);
             background-repeat: no-repeat;
             background-size: contain;
         }
@@ -297,52 +300,48 @@
             </ul>
         </div>
         <div class="img" id="img">
-
+            <img id='articleCover' src='./image/image/2.png'>
+            <div class='headline' id='headline'>${article.title}</div>
         </div>
         <div class="main">
             <section>
                 <div class="section-top">
                     <div class="section-top-middle">
-                        <a>阅读：</a><a class="view" id="view"></a>
-                        <a>点赞：</a><a class="like" id="like"></a>
-                        <a>收藏：</a><a class="collect" id="collect"></a>
+                        <a>阅读：</a><a class="view" id="view">${article.view}</a>
+                        <a>点赞：</a><a class="like" id="like">${article.like}</a>
+                        <a>收藏：</a><a class="collect" id="collect">${article.collect}</a>
                     </div>
                     <div class="section-top-right">
-                        <a>发布时间：</a><a class="date" id="date"></a>
-                        <a>作者：</a><a class="author" id="author"></a>
+                        <a>发布时间：</a><a class="date" id="date">${article.date}</a>
+                        <a>作者：</a><a class="author" id="author">${article.uname}</a>
                     </div>
                 </div>
                 <div class="section-middle">
-                    <span class="content" id="content" ></span>
-                    <div style="border-bottom:solid 1px #000; padding-bottom: 20px; width: 100%; display: flex; margin: 50px 0;"></div>
-                    <div class="section-middle-box">
-                        <div class="section-middle-left">
-                            <span>Sep2020-Jun2021</span>
-                        </div>
-                        <div class="section-middle-right">
-                                <span>See the interest on the way. Extend the road under your feet with stories.
-                                    <br><br>
-
-                                    See the interest in creating everything. Paint the stars and the sea in the distance
-                                    with a brush.</span>
-                        </div>
-                    </div>
-
-                    <div class="section-middle-box" style="border-bottom:solid 1px #000; padding-bottom: 20px;">
-                        <div class="section-middle-left">
-                            <span>Sep2021-Jun2022</span>
-                        </div>
-                        <div class="section-middle-right">
-                                <span>See the interest in embracing dimensions. Use imagination to make cartoon
-                                    characters and game protagonists jump
-                                    On the paper.</span>
-                        </div>
-                    </div>
+                    <span class="content" id="content">${article.content}</span>
                 </div>
-
             </section>
         </div>
 
+        <div class="comment">
+            <div class="frame">
+                <div class="record">头像</div>
+                <div class="arc"></div>
+                <div class="box">
+                    <textarea id="textComment" name="textComment" placeholder="发表一条评论吧"></textarea>
+                </div>
+                <a><span class="oButton" href="javascript:;" onclick="issueComment()">发表评论</span></a>
+            </div>
+            <div class="show">
+                <div class="tl">评论</div>
+                <div class="people">
+                    <img class="l" src="img/h2.jpg" >
+                    <span class="issuer" id="issuer">骑着蜗牛去旅行</span>
+                    <span class="issue" id="issue">测试留言</span>
+                    <span class="time" id="time">2020年3月21日</span>
+                    <a class="a3"><span class="reply" href="javascript:;" onclick="reply()">回复</span></a>
+                </div>
+            </div>
+        </div>
         <div class="shell-main-footer">
             <span>我是底边栏</span>
         </div>
@@ -353,38 +352,12 @@
     var login = document.getElementById("login");
     var username = "<%=session.getAttribute("username")%>";
 
-    var uid = "<%=request.getAttribute("articleUid")%>";
-    var author = "<%=request.getAttribute("articleUname")%>";
-    var title = "<%=request.getAttribute("articleTitle")%>";
-    var content = "<%=request.getAttribute("articleContent")%>";
-    var date = "<%=request.getAttribute("articleDate")%>";
-    var view = "<%=request.getAttribute("articleView")%>";
-    var like = "<%=request.getAttribute("articleLike")%>";
-    var collect = "<%=request.getAttribute("articleCollect")%>";
-    var cover = "<%=request.getAttribute("articleCover")%>";
-
-    document.title = title;
-
-    var html = '';
-    html = "<img id='articleCover' src='" + './image/image/2.png' + "'>" +
-        "<div class='headline' id='headline'>" + title + "</div>";
-    document.getElementById("img").innerHTML = html;
-
-    document.getElementById("view").innerHTML = view;
-    document.getElementById("like").innerHTML = like;
-    document.getElementById("collect").innerHTML = collect;
-    document.getElementById("date").innerHTML = date;
-    document.getElementById("author").innerHTML = author;
-    document.getElementById("content").innerHTML = content;
-
     if(username === "null") {
         login.innerHTML = "登录/注册";
     } else {
         login.innerHTML = "欢迎，" + username;
         login.href = "./userInfo.jsp";
     }
-
-
 
 
 </script>

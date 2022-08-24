@@ -37,12 +37,15 @@ public class LoginServlet extends HttpServlet {
             userLogin.setUid(result.getUid());
             userLogin.setUname(result.getUname());
 
+            resp.getWriter().write("登陆成功");
+
             /*TODO: 此处有bug*/
             //获取登陆页面所设定的访问路径
             String preUrl = (String) req.getSession().getAttribute("preUrl");
             //重定向到上一级页面
             resp.sendRedirect(preUrl);
         } else {    // 查询不到，登陆失败
+            resp.getWriter().write("登陆失败");
             resp.sendRedirect("login.jsp");
         }
     }

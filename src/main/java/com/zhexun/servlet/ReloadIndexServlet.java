@@ -20,35 +20,11 @@ public class ReloadIndexServlet extends HttpServlet {
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("test/html;charset=utf-8");
 
-        List<Article> article;
+        List<Article> articles;
         ArticleService articleService = new ArticleServiceImpl();
-        article = articleService.selectAllArticle();
+        articles = articleService.selectAllArticle();
 
-        req.setAttribute("uname1", article.get(0).getUname());
-        req.setAttribute("uname2", article.get(1).getUname());
-        req.setAttribute("uname3", article.get(2).getUname());
-        req.setAttribute("uname4", article.get(3).getUname());
-        req.setAttribute("uname5", article.get(4).getUname());
-
-        req.setAttribute("title1", article.get(0).getTitle());
-        req.setAttribute("title2", article.get(1).getTitle());
-        req.setAttribute("title3", article.get(2).getTitle());
-        req.setAttribute("title4", article.get(3).getTitle());
-        req.setAttribute("title5", article.get(4).getTitle());
-
-        req.setAttribute("content1", article.get(0).getContent());
-        req.setAttribute("content2", article.get(1).getContent());
-        req.setAttribute("content3", article.get(2).getContent());
-        req.setAttribute("content4", article.get(3).getContent());
-        req.setAttribute("content5", article.get(4).getContent());
-
-        req.setAttribute("date1", article.get(0).getDate());
-        req.setAttribute("date2", article.get(1).getDate());
-        req.setAttribute("date3", article.get(2).getDate());
-        req.setAttribute("date4", article.get(3).getDate());
-        req.setAttribute("date5", article.get(4).getDate());
-
-        req.setAttribute("article", article);
+        req.setAttribute("articles", articles);
         req.getRequestDispatcher( "/indexForward.jsp").forward(req,resp);
     }
 }

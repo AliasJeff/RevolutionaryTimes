@@ -35,6 +35,7 @@ public class ReloadArticleServlet extends HttpServlet {
         req.setAttribute("articleCollect", article.getCollect());
         req.setAttribute("articleCover", article.getCover());
 
+        req.setAttribute("article", article);
         req.getRequestDispatcher( "/articleForward.jsp").forward(req,resp);
 
     }

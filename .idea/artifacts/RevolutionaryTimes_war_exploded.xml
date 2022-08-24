@@ -7,6 +7,16 @@
         <element id="directory" name="classes">
           <element id="module-output" name="RevolutionaryTimes" />
         </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="Maven: jstl:jstl:1.2" />
+          <element id="library" level="project" name="mysql-connector-java-8.0.29" />
+          <element id="library" level="project" name="Maven: mysql:mysql-connector-java:8.0.29" />
+          <element id="library" level="project" name="commons-io-2.11.0" />
+          <element id="library" level="project" name="servlet-api" />
+          <element id="library" level="project" name="Maven: taglibs:standard:1.1.2" />
+          <element id="library" level="project" name="standard" />
+          <element id="library" level="project" name="jstl" />
+        </element>
       </element>
     </root>
   </artifact>

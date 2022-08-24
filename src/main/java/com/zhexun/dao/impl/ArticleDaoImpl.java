@@ -47,6 +47,7 @@ public class ArticleDaoImpl implements ArticleDao {
                 statement = conn.createStatement();
                 rs = statement.executeQuery(sql);
                 if(rs.next()) {
+                    art.setArticleid(rs.getInt("articleid"));
                     art.setUid(rs.getInt("uid"));
                     art.setUname(rs.getString("uname"));
                     art.setTitle(rs.getString("title"));
