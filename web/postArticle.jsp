@@ -12,6 +12,7 @@
     <title>发布文章</title>
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/nav.css">
+    <link rel="stylesheet" href="./layui/layui/css/layui.css">
 </head>
 <style>
     section {
@@ -106,19 +107,36 @@
 
 </style>
 <body>
+<script>
+    let msg = "${msg}";
+    if(msg !== "")
+        alert(msg)
+</script>
 <%--顶部导航栏--%>
 <div class="shell">
     <div class="shell-main">
         <div class="shell-main-nav" style="margin-bottom: 50px;">
             <div class="logo">
-                <img src="./image/image/logo.jpg" alt="">
+                <img src="./image/flag.png" alt="">
                 <span>旌旗在望</span>
             </div>
-            <ul>
+            <div class="search">
+                <span class="icon">🔍</span>
+                <input id="search-input" name="search-input" placeholder="搜索文章的标题或内容">
+                <a class="searchButton" href="javascript:;" onclick="toSearch()">搜索</a>
+            </div>
+            <ul class="layui-nav">
                 <li><a href="./index.jsp">首页</a></li>
-                <li><a href="./userInfo.jsp">个人中心</a></li>
-                <li><a href="./allArticle.jsp">全部文章</a></li>
-                <li><a href="./postArticle.jsp">发布文章</a></li>
+                <li><a href="javascript:;" onclick="toUserInfo()">个人中心</a></li>
+                <li><a href="/reloadAllArticle">查看更多</a></li>
+                <li class="layui-nav-item">
+                    <a href="javascript:;">发布/上传</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="./postArticle.jsp">发布文章</a></dd>
+                        <dd><a href="./postCourse.jsp">上传课程</a></dd>
+                        <dd><a href="./postPicture.jsp">上传图片</a></dd>
+                    </dl>
+                </li>
                 <li><a id="login" href="./login.jsp"> <%--js--%> </a></li>
                 <div class="nav-box"></div>
             </ul>
@@ -177,8 +195,22 @@
     if (username === "null") {
         login.innerHTML = "登录/注册";
     } else {
-        login.innerHTML = "欢迎，" + username;
-        login.href = "./userInfo.jsp";
+        let html = "<li class='layui-nav-item'>" +
+            "<a href='/reloadUserInfo'>欢迎," + username + "</a>" +
+            "<dl class='layui-nav-child'>" +
+            "<dd><a href='reloadUserInfo'>个人中心</a></dd>" +
+            "<dd><a href='./logout.jsp'>退出登录</a></dd>" +
+            "</dl>";
+        login.innerHTML = html;
+    }
+
+    function toSearch() {
+        var content = document.querySelector('[name="search-input"]').value;
+        if(content === null || content === "") {
+            alert("请输入搜索内容！")
+        } else {
+            window.location.href = "/search?content=" + content;
+        }
     }
 
     function postArticle() {
@@ -195,5 +227,25 @@
         }
     }
 
+    function toUserInfo() {
+        if(username === "null") {
+            alert("未登录，请先登录！")
+        } else {
+            window.location.href = "/reloadUserInfo";
+        }
+    }
+
+</script>
+<script src="layui/layui/layui.js"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //导航点击事件
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
 </script>
 </html>

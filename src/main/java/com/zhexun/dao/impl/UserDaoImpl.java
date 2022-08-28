@@ -30,6 +30,7 @@ public class UserDaoImpl implements UserDao {
                 result.setEmail(rs.getString("email"));
                 result.setBirthday(rs.getString("birthday"));
                 result.setAccess(rs.getString("access"));
+                return result;
             } else {
                 return null;
             }
@@ -132,6 +133,27 @@ public class UserDaoImpl implements UserDao {
                 throwables.printStackTrace();
             }
         }
-        return true;
+        return false;
+    }
+
+    @Override
+    public boolean deleteUser(Connection conn, int uid) {
+        String sql = "DELETE FROM user WHERE uid=" + uid;
+        Statement statement = null;
+        int rs;
+        try {
+            statement = conn.createStatement();
+            rs = statement.executeUpdate(sql);
+            return rs != 0;
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        } finally {
+            try {
+                statement.close();
+            } catch (SQLException throwables) {
+                throwables.printStackTrace();
+            }
+        }
+        return false;
     }
 }

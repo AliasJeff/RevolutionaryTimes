@@ -16,10 +16,15 @@
     <link rel="stylesheet" href="./css/index.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./layui/layui/css/layui.css">
     <script src="./js/swiper.js"></script>
 </head>
 <body>
-<%--TODO: 添加搜索栏--%>
+<script>
+    let msg = "${msg}";
+    if(msg !== "")
+        alert(msg)
+</script>
 <form id="formIndex" autocomplete="off" action="" method="post">
     <div class="shell">
         <div class="shell-top">
@@ -35,17 +40,26 @@
             <%--顶部导航栏--%>
             <div class="shell-main-nav" style="margin-bottom: 120px">
                 <div class="logo">
-                    <img src="./image/image/logo.jpg" alt="">
+                    <img src="./image/flag.png" alt="">
                     <span>旌旗在望</span>
                 </div>
-                <ul>
+                <div class="search">
+                    <span class="icon">🔍</span>
+                    <input id="search-input" name="search-input" placeholder="搜索文章的标题或内容">
+                    <a class="searchButton" href="javascript:;" onclick="toSearch()">搜索</a>
+                </div>
+                <ul class="layui-nav">
                     <li><a href="./index.jsp">首页</a></li>
                     <li><a href="javascript:;" onclick="toUserInfo()">个人中心</a></li>
-                    <%--TODO: 支持查看所有视频、图片、文章--%>
-                    <li><a href="./allArticle.jsp">全部文章</a></li>
-                    <%--TODO: 支持发布视频、图片、文章--%>
-                    <li><a href="./postArticle.jsp">发布文章</a></li>
-                    <%--TODO: 宽度不够--%>
+                    <li><a href="/reloadAllArticle">查看更多</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">发布/上传</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="./postArticle.jsp">发布文章</a></dd>
+                            <dd><a href="./postCourse.jsp">上传课程</a></dd>
+                            <dd><a href="./postPicture.jsp">上传图片</a></dd>
+                        </dl>
+                    </li>
                     <li><a id="login" href="./login.jsp"> <%--js--%> </a></li>
                     <div class="nav-box"></div>
                 </ul>
@@ -80,7 +94,7 @@
                         <h2 class="art-txt"><span>推荐文章</span></h2>
                         <ul class="art-list" id="art-list">
                             <c:forEach items="${articles}" var="article">
-                                <li><a href="article.jsp?Article=${article.title}"><span>${article.title}</span></a>
+                                <li><a href="/reloadArticle?Article=${article.articleid}"><span>${article.title}</span></a>
                                 </li>
                             </c:forEach>
                         </ul>
@@ -116,13 +130,11 @@
                     </aside>
                     <div class="art-right r" id="art-right r">
                         <h2 class="art-txt"><span>最新文章</span></h2>
-                        <%--TODO: 展示获赞、阅读、收藏数--%>
-                        <%--TODO: content中request无法读取换行的数据--%>
                         <c:forEach items="${articles}" var="article">
                             <div class="art-model">
-                                <h3><a href="article.jsp?Article=${article.title}">${article.title}</a></h3>
+                                <h3><a href="/reloadArticle?Article=${article.articleid}">${article.title}</a></h3>
                                 <p class="dateview"><span>发布时间: ${article.date}</span>
-                                    <span>作者: ${article.uname}</span>
+                                    <span>作者: ${article.uname}&nbsp;&nbsp;阅读: ${article.view}&nbsp;获赞: ${article.like}&nbsp;收藏: ${article.collect}</span>
                                 </p>
                                 <dl class="img-txt">
                                     <dt>
@@ -130,7 +142,7 @@
                                     </dt>
                                     <dd>
                                         <p class="detail">${article.content}</p>
-                                        <a href="article.jsp?Article=${article.title}" class="btn  c-fff">查看全文</a>
+                                        <a href="/reloadArticle?Article=${article.articleid}" class="btn  c-fff">查看全文</a>
                                     </dd>
                                 </dl>
                             </div>
@@ -139,7 +151,7 @@
                 </article>
             </section>
             <div class="shell-main-footer">
-                <span>我是底部栏</span>
+                <span>旌旗在望，鼓角相闻</span>
             </div>
         </div>
 
@@ -160,17 +172,35 @@
     if (username === "null") {
         login.innerHTML = "登录/注册";
     } else {
-        login.innerHTML = "欢迎，" + username;
-        login.href = "./userInfo.jsp";
+        let html = "<li class='layui-nav-item'>" +
+            "<a href='/reloadUserInfo'>欢迎," + username + "</a>" +
+            "<dl class='layui-nav-child'>" +
+                "<dd><a href='reloadUserInfo'>个人中心</a></dd>" +
+                "<dd><a href='./logout.jsp'>退出登录</a></dd>" +
+            "</dl>";
+        login.innerHTML = html;
+    }
+
+    function toSearch() {
+        var content = document.querySelector('[name="search-input"]').value;
+        if (content === null || content === "") {
+            alert("请输入搜索内容！")
+        } else {
+            window.location.href = "/search?content=" + content;
+        }
     }
 
     /*TODO: 把登陆检查改到servlet中*/
     function toUserInfo() {
-        if(username === "null") {
+        if (username === "null") {
             alert("未登录，请先登录！")
         } else {
-            window.location.href = "/reloadUserInfo"
+            window.location.href = "/reloadUserInfo";
         }
+    }
+
+    function toArticle(title) {
+        window.location.href = "/reloadArticle?Article=" + title
     }
 
     /*TODO: 把登陆检查改到servlet中*/
@@ -180,9 +210,21 @@
         } else if (username !== "admin") {
             alert("对不起，您没有权限访问！");
         } else {
-            window.location.href = "backstage.jsp";
+            window.location.href = "/reloadBackstage";
         }
     }
+</script>
+<script src="layui/layui/layui.js"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //导航点击事件
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
 </script>
 <script src="https://ajax.aspnetcdn.com/ajax/jquery/jquery-3.5.1.min.js"></script>
 <script>

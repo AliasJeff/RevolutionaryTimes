@@ -96,6 +96,9 @@
     text-align: center;
     line-height: 40px;
     border-radius: 10px;
+    right: 25px;
+    align-items: end;
+    justify-items: end;
 }
 
 .comment .frame a:nth-of-type(3) {
@@ -176,6 +179,15 @@
 
 .comment .show .people .a3 {
     right: 25px;
+}
+
+.comment .show .people .a4 {
+    right: 60px;
+}
+
+.comment .show .people .a4 input{
+    background-color: rgb(204, 224, 209);
+    border: 1px solid #31763F;
 }
 
 .comment .show .people .icon-zan11, .icon-zan22 {

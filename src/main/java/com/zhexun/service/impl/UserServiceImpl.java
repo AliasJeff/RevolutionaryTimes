@@ -93,4 +93,12 @@ public class UserServiceImpl implements UserService {
         JDBCUtil.release(conn);
         return result;
     }
+
+    @Override
+    public boolean deleteUser(int uid) {
+        Connection conn = JDBCUtil.getConnection();
+        boolean result = userDao.deleteUser(conn, uid);
+        JDBCUtil.release(conn);
+        return result;
+    }
 }

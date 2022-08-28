@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <html lang="en">
 <head>
@@ -7,6 +8,11 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/prefixfree/1.0.7/prefixfree.min.js"></script>
 </head>
 <body>
+<script>
+    let msg = "${msg}";
+    if(msg !== "")
+        alert(msg)
+</script>
 <div class="container">
     <div class="welcome">
         <div class="pinkbox">
@@ -36,10 +42,11 @@
             </div>
         </div>
 
+        <%--TODO: 美化一下--%>
         <div class="leftbox">
             <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
             <p class="desc">Pick your perfect <span>bouquet</span></p>
-            <img class="flower smaller" src="https://hbimg.huabanimg.com/c09305167a883e60179a45374df73252304001359acca-W3qbYm_fw658/format/webp" />
+            <img class="flower smaller" src="./image/flag.png"/>
             <p class="account">已有帐号?</p>
             <button class="button" id="signin">登录</button>
         </div>
@@ -47,7 +54,7 @@
         <div class="rightbox">
             <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
             <p class="desc">Pick your perfect <span>bouquet</span></p>
-            <img class="flower" src="https://hbimg.huabanimg.com/b28be92c8198975a74ad656eba00b352c9b9e589819af-lDXUAS_fw658/format/webp" />
+            <img class="flower" src="./image/flag.png" />
             <p class="account">没有账号?</p>
             <button class="button" id="signup">注册</button>
         </div>
@@ -55,6 +62,7 @@
 </div>
 
 <!-- partial -->
-<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script><script src="./js/login.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js'></script>
+<script src="./js/login.js"></script>
 </body>
 </html>

@@ -24,15 +24,13 @@
     <script src="./js/swiper.js"></script>
 </head>
 <body>
-<%--TODO: 添加搜索栏--%>
-<form id="formIndex" autocomplete="off" action="" method="post">
 
-</form>
+
+<%
+    response.sendRedirect(request.getContextPath() + "/reloadIndex");
+%>
 </body>
 
-<script>
-    document.getElementById("formIndex").action = "/reloadIndex";
-    document.getElementById("formIndex").submit();
-</script>
+
 
 </html>

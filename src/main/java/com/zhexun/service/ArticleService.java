@@ -10,4 +10,6 @@ public interface ArticleService {
     List<Article> selectAllArticle();
     Article selectArticleByCondition(Article article);
     List<Article> getMyArticle(String name);
+    List<Article> searchArticle(String s);
+    boolean deleteArticle(int articleid);
 }

@@ -22,16 +22,10 @@ public class ReloadUserInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("test/html;charset=utf-8");
+        resp.setContentType("text/html;charset=utf-8");
 
         String username = (String) req.getSession().getAttribute("username");
-        if(username == null) {
-            /*TODO: 如何发出错误提示消息？*/
-            resp.getWriter().write("未登录，请先登录！");
-            resp.getWriter().flush();
-            resp.sendRedirect("/index.jsp");
-            return; //重定向以后 再进行转发有极大可能抛出异常 需要加return
-        }
+
         List<Article> myArticles = new ArrayList<>();
         ArticleService articleService = new ArticleServiceImpl();
         myArticles = articleService.getMyArticle(username);
@@ -44,6 +38,7 @@ public class ReloadUserInfoServlet extends HttpServlet {
 
         req.setAttribute("self", self);
         req.setAttribute("myArticles", myArticles);
+        req.setAttribute("msg", req.getParameter("msg"));
         req.getRequestDispatcher("/userInfo.jsp").forward(req, resp);
     }
 

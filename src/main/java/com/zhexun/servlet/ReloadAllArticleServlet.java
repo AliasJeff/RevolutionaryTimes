@@ -1,8 +1,11 @@
 package com.zhexun.servlet;
 
 import com.zhexun.entity.Article;
+import com.zhexun.entity.Picture;
 import com.zhexun.service.ArticleService;
+import com.zhexun.service.PictureService;
 import com.zhexun.service.impl.ArticleServiceImpl;
+import com.zhexun.service.impl.PictureServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -19,13 +22,23 @@ public class ReloadAllArticleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("test/html;charset=utf-8");
+        resp.setContentType("text/html;charset=utf-8");
 
         List<Article> articles;
         ArticleService articleService = new ArticleServiceImpl();
         articles = articleService.selectAllArticle();
 
+        List<Picture> pictures;
+        PictureService pictureService = new PictureServiceImpl();
+        pictures = pictureService.getAllPicture();
+
         req.setAttribute("articles", articles);
-        req.getRequestDispatcher( "/allArticleForward.jsp").forward(req,resp);
+        req.setAttribute("pictures", pictures);
+        req.getRequestDispatcher( "/allArticle.jsp").forward(req,resp);
+    }
+
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
     }
 }

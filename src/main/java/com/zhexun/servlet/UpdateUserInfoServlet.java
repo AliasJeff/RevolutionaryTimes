@@ -17,7 +17,7 @@ public class UpdateUserInfoServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("test/html;charset=utf-8");
+        resp.setContentType("text/html;charset=utf-8");
 
         User user = new User();
         String curUser = (String) req.getSession().getAttribute("username");
@@ -36,22 +36,13 @@ public class UpdateUserInfoServlet extends HttpServlet {
             user.setBirthday(req.getParameter("newBirthday"));
 
         if (userService.updateUser(curUser, user)) {  // 更新成功
-            if (req.getParameter("newUsername") != null)
-                req.setAttribute("username", user.getUname());
-            if (req.getParameter("newUpassword") != null)
-                req.setAttribute("upassword", user.getUpassword());
-            if (req.getParameter("newUintroduce") != null)
-                req.setAttribute("uintroduce", user.getUintroduce());
-            if (req.getParameter("newAvatar") != null)
-                req.setAttribute("avatar", user.getAvatar());
-            if (req.getParameter("newEmail") != null)
-                req.setAttribute("email", user.getEmail());
-            if (req.getParameter("newBirthday") != null)
-                req.setAttribute("birthday", user.getBirthday());
-
-            req.getSession().setAttribute("username", user.getUname());
-            req.getRequestDispatcher( "/userInfo.jsp").forward(req,resp);
+            User newUser;
+            newUser = userService.getUserByCondition(user);
+            req.getSession().setAttribute("username", newUser.getUname());
+            req.getRequestDispatcher( "/reloadUserInfo").forward(req,resp);
+        } else {
+            req.setAttribute("msg", "编辑个人信息失败！");
+            req.getRequestDispatcher( "/reloadUserInfo").forward(req,resp);
         }
-        // TODO: 更新失败
     }
 }

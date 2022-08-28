@@ -42,6 +42,62 @@ body .shell-main-nav .logo span {
   letter-spacing: 2px;
 }
 
+
+body .shell-main-nav .search {
+  width: 220px;
+  height: 100%;
+  position: absolute;
+  left: 30%;
+  justify-content: space-between;
+  display: flex;
+  align-items: center;
+}
+
+body .shell-main-nav .search .icon {
+  position: absolute;
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  margin-right: 3px;
+  left: 12px;
+  top: 18px;
+}
+
+body .shell-main-nav .search input {
+  height: 32px;
+  border: #777777 solid 1px;
+  background-color: white;
+
+  font-size: 14px;
+  display: inline-block;
+  line-height: inherit;
+  outline: 0;
+  color: #222226;
+  vertical-align: top;
+  text-indent: 32px;
+  border-right: none;
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  border-radius: 16px 0 0 16px;
+}
+
+body .shell-main-nav .search a {
+  display: inline-block;
+  width: 88px;
+  height: 30px;
+  outline: 0;
+  border-radius: 0 16px 16px 0;
+  border: #777777 solid 1px;
+  font-size: 14px;
+  line-height: 32px;
+  cursor: pointer;
+  -webkit-transition: all .2s ease-in;
+  transition: all .2s ease-in;
+  background-color: #eee;
+  text-align: center;
+}
+
+
 body .shell-main-nav ul {
   width: 600px;
   height: 100%;

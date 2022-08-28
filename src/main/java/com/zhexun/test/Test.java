@@ -24,28 +24,31 @@ public class Test {
     static ArticleDao articleDao = new ArticleDaoImpl();
 
     public static void main(String[] args) {
-        User user = new User();
-//        session.setAttribute("username", "test");
-        Article article = new Article();
-        article.setUid(2);
-        article.setTitle("标题标题标题");
-        article.setContent("正文正文正文正文正文正文正文正文正文正文");
-        List<Article> articles;
-
-
-        Connection conn = JDBCUtil.getConnection();
-//        articleDao.postArticle(conn, article);
-        articles = articleService.selectAllArticle();
-
-//        User result = userDao.selectUserByCondition(conn, user);
-//        User result = userService.login("test", "123456");
-
-        JDBCUtil.release(conn);
-        for(Article art : articles) {
-            System.out.println(art.getUid());
-            System.out.println(art.getTitle());
-            System.out.println(art.getContent());
-            System.out.println();
-        }
+//        User user = new User();
+////        session.setAttribute("username", "test");
+//        Article article = new Article();
+//        article.setUid(2);
+//        article.setTitle("标题标题标题");
+//        article.setContent("正文正文正文正文正文正文正文正文正文正文");
+//        List<Article> articles;
+//
+//
+//        Connection conn = JDBCUtil.getConnection();
+////        articleDao.postArticle(conn, article);
+//        articles = articleService.selectAllArticle();
+//
+////        User result = userDao.selectUserByCondition(conn, user);
+////        User result = userService.login("test", "123456");
+//
+//        JDBCUtil.release(conn);
+//        for(Article art : articles) {
+//            System.out.println(art.getUid());
+//            System.out.println(art.getTitle());
+//            System.out.println(art.getContent());
+//            System.out.println();
+//        }
+        int i = 123;
+        String s = "abc" + i;
+        System.out.println(s);
     }
 }

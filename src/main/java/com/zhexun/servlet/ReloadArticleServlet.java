@@ -1,8 +1,11 @@
 package com.zhexun.servlet;
 
 import com.zhexun.entity.Article;
+import com.zhexun.entity.Comment;
 import com.zhexun.service.ArticleService;
+import com.zhexun.service.CommentService;
 import com.zhexun.service.impl.ArticleServiceImpl;
+import com.zhexun.service.impl.CommentServiceImpl;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +13,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 @WebServlet(name = "ReloadArticleServlet", urlPatterns = "/reloadArticle")
 public class ReloadArticleServlet extends HttpServlet {
@@ -17,26 +22,25 @@ public class ReloadArticleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
-        resp.setContentType("test/html;charset=utf-8");
+        resp.setContentType("text/html;charset=UTF-8");
 
-        String articleTitle = req.getParameter("articleTitle");
+        String id = req.getParameter("Article");
+        int articleid = Integer.parseInt(id);
         Article article = new Article();
-        article.setTitle(articleTitle);
+        List<Comment> comments = new ArrayList<>();
+        article.setArticleid(articleid);
         ArticleService articleService = new ArticleServiceImpl();
+        CommentService commentService = new CommentServiceImpl();
         article = articleService.selectArticleByCondition(article);
-
-        req.setAttribute("articleUid", article.getUid());
-        req.setAttribute("articleUname", article.getUname());
-        req.setAttribute("articleTitle", article.getTitle());
-        req.setAttribute("articleContent", article.getContent());
-        req.setAttribute("articleDate", article.getDate());
-        req.setAttribute("articleView", article.getView());
-        req.setAttribute("articleLike", article.getLike());
-        req.setAttribute("articleCollect", article.getCollect());
-        req.setAttribute("articleCover", article.getCover());
+        comments = commentService.getComments(article);
 
         req.setAttribute("article", article);
-        req.getRequestDispatcher( "/articleForward.jsp").forward(req,resp);
+        req.setAttribute("comments", comments);
+        req.getRequestDispatcher( "/article.jsp").forward(req,resp);
+    }
 
+    @Override
+    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        doPost(req, resp);
     }
 }

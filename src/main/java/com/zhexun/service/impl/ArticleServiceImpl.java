@@ -54,4 +54,22 @@ public class ArticleServiceImpl implements ArticleService {
         JDBCUtil.release(conn);
         return articles;
     }
+
+    @Override
+    public List<Article> searchArticle(String s) {
+        Connection conn = JDBCUtil.getConnection();
+        List<Article> article;
+        article = articleDao.searchArticle(conn, s);
+        JDBCUtil.release(conn);
+        return article;
+    }
+
+    @Override
+    public boolean deleteArticle(int articleid) {
+        Connection conn = JDBCUtil.getConnection();
+        boolean success;
+        success = articleDao.deleteArticle(conn, articleid);
+        JDBCUtil.release(conn);
+        return success;
+    }
 }

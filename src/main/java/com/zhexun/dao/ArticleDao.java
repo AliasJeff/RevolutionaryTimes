@@ -11,4 +11,6 @@ public interface ArticleDao {
     List<Article> selectAllArticle(Connection conn);
     Article selectArticleByCondition(Connection conn, Article article);
     List<Article> selectAllArticleByAuthor(Connection conn, String name);
+    List<Article> searchArticle(Connection conn, String s);
+    boolean deleteArticle(Connection conn, int articleid);
 }

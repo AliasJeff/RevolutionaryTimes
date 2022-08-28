@@ -13,4 +13,5 @@ public interface UserService {
     User getUserByCondition(User user);
     List<User> getAllUser();
     boolean updateUser(String username, User newUser);
+    boolean deleteUser(int uid);
 }

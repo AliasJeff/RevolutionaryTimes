@@ -123,25 +123,25 @@ public class User {
 
     public String getQueryCondition() {
         StringBuilder stringBuilder = new StringBuilder("1=1");
-        if (avatar != null) {
+        if (avatar != null && !avatar.isEmpty()) {
             stringBuilder.append(" and avatar= '").append(uid).append("'");
         }
         if (uid != 0) {
             stringBuilder.append(" and uid=").append(uid);
         }
-        if (uname != null) {
+        if (uname != null && !uname.isEmpty()) {
             stringBuilder.append(" and uname= '").append(uname).append("'");
         }
-        if (upassword != null) {
+        if (upassword != null && !upassword.isEmpty()) {
             stringBuilder.append(" and upassword= '").append(upassword).append("'");
         }
-        if (uintroduce != null) {
+        if (uintroduce != null && !uintroduce.isEmpty()) {
             stringBuilder.append(" and uintroduce= '").append(uintroduce).append("'");
         }
-        if (email != null) {
+        if (email != null && !email.isEmpty()) {
             stringBuilder.append(" and email= '").append(email).append("'");
         }
-        if (birthday != null) {
+        if (birthday != null && !birthday.isEmpty()) {
             stringBuilder.append(" and birthday= '").append(birthday).append("'");
         }
 

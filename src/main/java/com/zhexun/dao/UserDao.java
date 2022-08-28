@@ -11,4 +11,5 @@ public interface UserDao {
     boolean addUser(Connection conn, User user) throws SQLException;
     List<User> getAllUser(Connection conn);
     boolean updateUser(Connection conn, String curUsername, User newUser);
+    boolean deleteUser(Connection conn, int uid);
 }

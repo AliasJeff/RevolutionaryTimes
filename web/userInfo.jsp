@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="./css/all.css">
     <link rel="stylesheet" href="./css/style.css">
     <link rel="stylesheet" href="./css/common.css">
+    <link rel="stylesheet" href="./layui/layui/css/layui.css">
 </head>
 <style>
     .box1 {
@@ -74,19 +75,36 @@
     }
 </style>
 <body>
+<script>
+    let msg = "${msg}";
+    if(msg !== "")
+        alert(msg)
+</script>
 <form id="formUserInfo" autocomplete="off" action="" method="post">
     <div class="shell">
         <div class="shell-main">
             <div class="shell-main-nav">
                 <div class="logo">
-                    <img src="./image/image/logo.jpg" alt="">
+                    <img src="./image/flag.png" alt="">
                     <span>旌旗在望</span>
                 </div>
-                <ul>
+                <div class="search">
+                    <span class="icon">🔍</span>
+                    <input id="search-input" name="search-input" placeholder="搜索文章的标题或内容">
+                    <a class="searchButton" href="javascript:;" onclick="toSearch()">搜索</a>
+                </div>
+                <ul class="layui-nav">
                     <li><a href="./index.jsp">首页</a></li>
                     <li><a href="javascript:;" onclick="toUserInfo()">个人中心</a></li>
-                    <li><a href="./allArticle.jsp">全部文章</a></li>
-                    <li><a href="./postArticle.jsp">发布文章</a></li>
+                    <li><a href="/reloadAllArticle">查看更多</a></li>
+                    <li class="layui-nav-item">
+                        <a href="javascript:;">发布/上传</a>
+                        <dl class="layui-nav-child">
+                            <dd><a href="./postArticle.jsp">发布文章</a></dd>
+                            <dd><a href="./postCourse.jsp">上传课程</a></dd>
+                            <dd><a href="./postPicture.jsp">上传图片</a></dd>
+                        </dl>
+                    </li>
                     <li><a id="login" href="./login.jsp"> <%--js--%> </a></li>
                     <div class="nav-box"></div>
                 </ul>
@@ -94,10 +112,10 @@
             <section>
                 <div class="box1">
                     <h2 class="box1-txt"><span>个人信息</span>
-                        <a style="margin-left: 60%; margin-right: 20px;" onclick="editInfo()">编辑资料</a>
+                        <a style="margin-left: 60%; margin-right: 20px;" href="javascript:;" onclick="editUserInfo()">编辑资料</a>
                         <a onclick="submitInfo()">提交</a>
                     </h2>
-                    <ul class="info-list" id="info-list">
+                    <ul class="info-list" id="info-list" style="display: block">
                         <li><a><span>头像</span><span>${self.avatar}</span></a></li>
                         <li><a><span>用户名</span><span>${self.uname}</span></a></li>
                         <li><a><span>密码</span><span>${self.upassword}</span></a></li>
@@ -106,18 +124,30 @@
                         <li><a><span>生日</span><span>${self.birthday}</span></a></li>
                         <li><a><span>管理员权限</span><span><c:if test="${self.access == 0}">普通用户</c:if><c:if test="${self.access == 1}">管理员</c:if></span></a></li>
                     </ul>
+                    <ul class="info-list" id="info-list-edit" style="display: none">
+                        <li><a><span>头像</span><input id='newAvatar' name='newAvatar' type='text' autocomplete='off' placeholder=${self.avatar}></a></li>
+                        <li><a><span>用户名</span><input id='newUsername' name='newUsername' type='text' autocomplete='off' placeholder=${self.uname}></a></li>
+                        <li><a><span>密码</span><input id='newUpassword' name='newUpassword' type='text' autocomplete='off' placeholder=${self.upassword}></a></li>
+                        <li><a><span>简介</span><input id='newUintroduce' name='newUintroduce' type='text' autocomplete='off' placeholder=${self.uintroduce}></a></li>
+                        <li><a><span>邮箱</span><input id='newEmail' name='newEmail' type='text' autocomplete='off' placeholder=${self.email}></a></li>
+                        <li><a><span>生日</span><input id='newBirthday' name='newBirthday' type='text' autocomplete='off' placeholder=${self.birthday}></a></li>
+                        <li><a><span>管理员权限</span><span><c:if test="${self.access == 0}">普通用户</c:if><c:if test="${self.access == 1}">管理员</c:if></span></a></li>
+                    </ul>
                 </div>
                 <div class="box1">
                     <h2 class="box1-txt"><span>消息</span></h2>
                     <ul class="info-list" id="msg-list">
-                        <li><a><span>xxxxx</span></a></li>
+                        <li><a><span>这里空空如也~</span></a></li>
                     </ul>
                 </div>
                 <div class="box1">
                     <h2 class="box1-txt"><span>我的发布</span></h2>
                     <ul class="info-list" id="myPost-list">
+                        <c:if test="${myArticles.size() == 0}">
+                            <li><a><span>这里空空如也~</span></a></li>
+                        </c:if>
                         <c:forEach items="${myArticles}" var="myArticle">
-                            <li><a href="article.jsp?Article=${myArticle.title}"><span>${myArticle.title}</span>
+                            <li><a href="/reloadArticle?Article=${article.title}"><span>${myArticle.title}</span>
                                 <span>阅读: ${myArticle.view}&nbsp&nbsp获赞: ${myArticle.like}&nbsp&nbsp收藏: ${myArticle.collect}&nbsp&nbsp日期: ${myArticle.date}</span></a></li>
                         </c:forEach>
                     </ul>
@@ -125,14 +155,14 @@
                 <div class="box1">
                     <h2 class="box1-txt"><span>我的收藏</span></h2>
                     <ul class="info-list" id="myCollect-list">
-                        <%--js--%>
+                        <li><a><span>这里空空如也~</span></a></li>
                     </ul>
                 </div>
             </section>
 
 
             <div class="shell-main-footer">
-                <span>我是底边栏</span>
+                <span>旌旗在望，鼓角相闻</span>
             </div>
         </div>
 
@@ -146,25 +176,41 @@
     session.setAttribute("preUrl",preUrl);
     %>
 
+    var login = document.getElementById("login");
     var username = "<%=session.getAttribute("username")%>";
-    var upassword, uintroduce, avatar, email, birthday, access;
 
     if (username === "null") {
-        document.getElementById("login").innerHTML = "登录/注册";
+        login.innerHTML = "登录/注册";
     } else {
-        document.getElementById("login").innerHTML = "欢迎，" + username;
-        document.getElementById("login").href = "./userInfo.jsp";
+        let html = "<li class='layui-nav-item'>" +
+            "<a href='/reloadUserInfo'>欢迎," + username + "</a>" +
+            "<dl class='layui-nav-child'>" +
+            "<dd><a href='reloadUserInfo'>个人中心</a></dd>" +
+            "<dd><a href='./logout.jsp'>退出登录</a></dd>" +
+            "</dl>";
+        login.innerHTML = html;
     }
 
-    function editInfo() {
-        var html = "<li><a><span>头像</span><input id='newAvatar' name='newAvatar' type='text' autocomplete='off' placeholder='" + avatar + "'></a></li>" +
-            "<li><a><span>用户名</span><input id='newUsername' name='newUsername' type='text' autocomplete='off' placeholder='" + username + "'></a></li>" +
-            "<li><a><span>密码</span><input id='newUpassword' name='newUpassword' type='text' autocomplete='off' placeholder='" + upassword + "'></a></li>" +
-            "<li><a><span>简介</span><input id='newUintroduce' name='newUintroduce' type='text' autocomplete='off' placeholder='" + uintroduce + "'></a></li>" +
-            "<li><a><span>邮箱</span><input id='newEmail' name='newEmail' type='text' autocomplete='off' placeholder='" + email + "'></a></li>" +
-            "<li><a><span>生日</span><input id='newBirthday' name='newBirthday' type='text' autocomplete='off' placeholder='" + birthday + "'></a></li>" +
-            "<li><a><span>管理员权限</span><span>" + access + "</span></a></li>";
-        document.getElementById("info-list").innerHTML = html;
+    function toSearch() {
+        var content = document.querySelector('[name="search-input"]').value;
+        if(content === null || content === "") {
+            alert("请输入搜索内容！")
+        } else {
+            window.location.href = "/search?content=" + content;
+        }
+    }
+
+    function toUserInfo() {
+        if(username === "null") {
+            alert("未登录，请先登录！")
+        } else {
+            window.location.href = "/reloadUserInfo";
+        }
+    }
+
+    function editUserInfo() {
+        document.getElementById("info-list").style.display = "none";
+        document.getElementById("info-list-edit").style.display = "block";
     }
 
     function submitInfo() {
@@ -172,5 +218,17 @@
         document.getElementById("formUserInfo").submit();
     }
 
+</script>
+<script src="layui/layui/layui.js"></script>
+<script>
+    layui.use('element', function(){
+        var element = layui.element; //导航的hover效果、二级菜单等功能，需要依赖element模块
+
+        //导航点击事件
+        element.on('nav(demo)', function(elem){
+            //console.log(elem)
+            layer.msg(elem.text());
+        });
+    });
 </script>
 </html>
