@@ -50,7 +50,7 @@ public class DeleteServlet extends HttpServlet {
             if(success) {
                 req.setAttribute("msg", "删除成功！");
 
-            } /*TODO: 失败提示信息，下同*/
+            }
         } else if(commentid != 0) {
             CommentService commentService = new CommentServiceImpl();
             success = commentService.deleteComment(commentid);

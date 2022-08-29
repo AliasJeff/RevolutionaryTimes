@@ -32,7 +32,6 @@ public class ArticleDaoImpl implements ArticleDao {
         return i != 0;
     }
 
-    /*TODO: 遍历整个数据库*/
     @Override
     public List<Article> selectAllArticle(Connection conn) {
         int id = 100;

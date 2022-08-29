@@ -204,7 +204,7 @@
         if(username === "null") {
             alert("未登录，请先登录！")
         } else {
-            window.location.href = "/reloadUserInfo";
+            window.location.href = "/reloadUserInfo?user=" + username;
         }
     }
 

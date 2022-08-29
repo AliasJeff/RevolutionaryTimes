@@ -190,7 +190,6 @@
         }
     }
 
-    /*TODO: 把登陆检查改到servlet中*/
     function toUserInfo() {
         if (username === "null") {
             alert("未登录，请先登录！")
@@ -203,7 +202,7 @@
         window.location.href = "/reloadArticle?Article=" + title
     }
 
-    /*TODO: 把登陆检查改到servlet中*/
+
     function toAdmin() {
         if (username === "null") {
             alert("未登录，请先登录！");

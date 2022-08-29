@@ -71,7 +71,6 @@ public class IssueCommentServlet extends HttpServlet {
         CommentService commentService = new CommentServiceImpl();
         boolean result = commentService.issueComment(comment);
         if(result) {
-            /*TODO: 传值显示问号*/
             req.setAttribute("msg", "发布成功！");
             String preUrl = "/reloadArticle?Article=" + article.getArticleid();
             resp.sendRedirect(preUrl);

@@ -99,7 +99,6 @@
     var today = new Date();
     var day = today.getDay();
     var date = today.getFullYear() + '-' + (today.getMonth() + 1) + '-' + today.getDate();
-    /*TODO: 缺少数字0*/
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date + ' ' + time;
     document.getElementById("date1").innerHTML = dateTime;

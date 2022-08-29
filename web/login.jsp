@@ -42,18 +42,15 @@
             </div>
         </div>
 
-        <%--TODO: 美化一下--%>
         <div class="leftbox">
-            <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
-            <p class="desc">Pick your perfect <span>bouquet</span></p>
+            <h2 class="title"><span>LOGIN</span>&<br>REGISTER</h2>
             <img class="flower smaller" src="./image/flag.png"/>
             <p class="account">已有帐号?</p>
             <button class="button" id="signin">登录</button>
         </div>
 
         <div class="rightbox">
-            <h2 class="title"><span>BLOOM</span>&<br>BOUQUET</h2>
-            <p class="desc">Pick your perfect <span>bouquet</span></p>
+            <h2 class="title"><span>LOGIN</span>&<br>REGISTER</h2>
             <img class="flower" src="./image/flag.png" />
             <p class="account">没有账号?</p>
             <button class="button" id="signup">注册</button>

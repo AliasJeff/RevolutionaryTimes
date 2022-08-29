@@ -70,14 +70,32 @@
         </div>
         <div class="collocation">
             <div class="title">
-                <h2>图片和视频</h2>
+                <h2>课程视频</h2>
+            </div>
+            <ul class="list">
+                <c:forEach items="${courses}" var="course">
+                    <li>
+                            <%--TODO: 此处为绝对路径，无法显示--%>
+                        <video src="<%=request.getRealPath("/courses") + "\\"%>${course.cname}"></video>
+                        <div class="description">
+                            <p>${course.cname}</p>
+                            <p>作者: ${course.uname}&nbsp;日期: ${course.date}</p>
+                        </div>
+                    </li>
+                </c:forEach>
+            </ul>
+        </div>
+        <div class="collocation">
+            <div class="title">
+                <h2>图片</h2>
             </div>
             <ul class="list">
                 <c:forEach items="${pictures}" var="picture">
                     <li>
-                        <%--TODO: 不知道为什么显示不出来--%>
+                        <%--TODO: 此处为绝对路径，无法显示--%>
                         <img src="<%=request.getRealPath("/images") + "\\"%>${picture.pname}" alt="">
                         <div class="description">
+                            <p>${picture.pname}</p>
                             <p>作者: ${picture.uname}&nbsp;日期: ${picture.date}</p>
                         </div>
                     </li>

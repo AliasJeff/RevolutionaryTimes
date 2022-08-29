@@ -19,7 +19,6 @@ import java.util.Objects;
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        /*TODO: bug:不输入密码就能登陆*/
         req.setCharacterEncoding("UTF-8");
         resp.setCharacterEncoding("UTF-8");
         resp.setContentType("text/html;charset=utf-8");

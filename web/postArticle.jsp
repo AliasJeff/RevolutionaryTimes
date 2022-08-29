@@ -141,7 +141,6 @@
                 <div class="nav-box"></div>
             </ul>
         </div>
-        <%--TODO: 支持markdown--%>
         <form id="formArticle" action="" method="post">
             <section>
                 <div class="form">
@@ -157,7 +156,7 @@
                 <ul>
                     <li>
                         <%--TODO: 保存草稿功能--%>
-                        <button id="saveDraft">保存草稿</button>
+                        <button id="saveDraft" onclick="saveDraft()">保存草稿</button>
                     </li>
                     <li>
                         <%--TODO: 添加封面、添加标签--%>
@@ -186,7 +185,6 @@
     var today = new Date();
     var day = today.getDay();
     var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-    /*TODO: 缺少数字0*/
     var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
     var dateTime = date+' '+time;
     document.getElementById("date").innerHTML = dateTime;
@@ -225,6 +223,10 @@
                 alert("请填写标题或正文！");
             }
         }
+    }
+
+    function saveDraft() {
+        alert("功能正在开发中……")
     }
 
     function toUserInfo() {

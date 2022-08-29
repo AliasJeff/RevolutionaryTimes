@@ -1,10 +1,13 @@
 package com.zhexun.servlet;
 
 import com.zhexun.entity.Article;
+import com.zhexun.entity.Course;
 import com.zhexun.entity.Picture;
 import com.zhexun.service.ArticleService;
+import com.zhexun.service.CourseService;
 import com.zhexun.service.PictureService;
 import com.zhexun.service.impl.ArticleServiceImpl;
+import com.zhexun.service.impl.CourseServiceImpl;
 import com.zhexun.service.impl.PictureServiceImpl;
 
 import javax.servlet.ServletException;
@@ -28,11 +31,16 @@ public class ReloadAllArticleServlet extends HttpServlet {
         ArticleService articleService = new ArticleServiceImpl();
         articles = articleService.selectAllArticle();
 
+        List<Course> courses;
+        CourseService courseService = new CourseServiceImpl();
+        courses = courseService.getAllCourse();
+
         List<Picture> pictures;
         PictureService pictureService = new PictureServiceImpl();
         pictures = pictureService.getAllPicture();
 
         req.setAttribute("articles", articles);
+        req.setAttribute("courses", courses);
         req.setAttribute("pictures", pictures);
         req.getRequestDispatcher( "/allArticle.jsp").forward(req,resp);
     }

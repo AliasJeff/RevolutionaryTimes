@@ -170,19 +170,19 @@
                     </tr>
                     <c:forEach items='${users}' var='user'>
                         <tr>
-                            <td><input name="newAvatar" type='text' autocomplete='off'
+                            <td><input name="newAvatar${user.uname}" type='text' autocomplete='off'
                                                      placeholder=${user.avatar}></td>
-                            <td><input name="newUname" type='text' autocomplete='off'
+                            <td><input name="newUname${user.uname}" type='text' autocomplete='off'
                                                     placeholder=${user.uname}></td>
-                            <td><input name="newUpassword" type='text' autocomplete='off'
+                            <td><input name="newUpassword${user.uname}" type='text' autocomplete='off'
                                                         placeholder=${user.upassword}></td>
-                            <td><input name="newUintroduce" type='text' autocomplete='off'
+                            <td><input name="newUintroduce${user.uname}" type='text' autocomplete='off'
                                                          placeholder=${user.uintroduce}></td>
-                            <td><input name="newEmail" type='text' autocomplete='off'
+                            <td><input name="newEmail${user.uname}" type='text' autocomplete='off'
                                                     placeholder=${user.email}></td>
-                            <td><input name="newBirthday" type='text' autocomplete='off'
+                            <td><input name="newBirthday${user.uname}" type='text' autocomplete='off'
                                                        placeholder=${user.birthday}></td>
-                            <td><input name="newAccess" type='text' autocomplete='off'
+                            <td><input name="newAccess${user.uname}" type='text' autocomplete='off'
                                                      placeholder=${user.access}></td>
                             <td><a href="/delete?uid=${user.uid}" style="text-decoration: underline;">删除</a></td>
                         </tr>

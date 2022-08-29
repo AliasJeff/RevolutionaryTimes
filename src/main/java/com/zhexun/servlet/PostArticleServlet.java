@@ -52,7 +52,6 @@ public class PostArticleServlet extends HttpServlet {
             //重定向到上一级页面
             req.getRequestDispatcher("./postArticle.jsp").forward(req,resp);
         }
-        // TODO: else上传失败
 
     }
 }
